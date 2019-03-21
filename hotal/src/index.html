@@ -1,0 +1,447 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+
+        <!-- meta使用viewport以确保页面可自由缩放 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="jquerymobile/jquery.mobile-1.4.5.min.css">
+        <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="jquerymobile/jquery.mobile-1.4.5.min.js"></script>
+        <style type="text/css">
+      	*{
+      		margin: 0px;
+      		padding: 0px;
+      	}
+      	body{
+      		font-size: 62.5%;
+      	}
+      		#header{
+      			background:rgb(37,38,40);
+      		}
+      		#btn_l{
+      			margin-left: 5%;
+      			background: rgb(37,38,40);
+      			border: 0px;
+      			box-shadow: none;
+      		}
+      		#btn_r{
+      			margin-right: 5%;
+            float: right;
+            background: rgb(37,38,40);
+            border: 0px;
+            box-shadow: none;
+      		}
+      		.ui-content div a{
+      			border: 0px;
+      			box-shadow: none;
+      			background: white;
+      		}
+      		#title1{
+      			position: relative;
+      			background:green;
+      			width: 100%;
+      		}
+      		#title1 img{
+      			float: left;
+            width: 20px;
+            height: 30px;
+            margin-bottom: 5px;
+      		}
+      		#title1 h1{
+      			position: absolute;
+            left: 50%;
+            margin-left: -2em;
+      		}
+      		#mainPic{
+      			width:100%;
+      			background: #f156f2;
+      			font-size: 5em;
+      			position: relative;
+      			overflow: hidden;
+      		}
+      		#mainPic .pic_nav{
+      			width: 140px;
+      			height: 30px;
+      			background: green;
+      			position: absolute;
+      			left: 50%;
+      			margin-left: -70px;
+      			bottom: 0px;
+      		}
+      		#mainPic .pic_nav ul li{
+      			list-style: none;
+      			width: 10px;
+      			height: 10px;
+      			margin-top: 10px;
+      			float: left;
+      			background: red;
+      			margin-left:20px;
+      			border-radius: 50%;
+      		}
+      		#pic_banner_li{
+      			width: 500%;
+      		}
+      		#pic_banner_li li{
+      			list-style: none;
+      			width: 20%;
+      			height: 380px;
+      			float: left;
+      		}
+      		.on{
+      			background: gray!important;
+      		}
+          #address{
+            display: flex;
+          }
+          #address .left{
+            flex: 4;
+            padding-left: 20px;
+            padding-top: 10px;
+          }
+          #address .left h3{
+            margin-top: 10px;
+          }
+          #address .left img{
+            width: 15px;
+            height: 15px;
+            margin-right: 10px;
+          }
+          #address .left div{
+            margin-top: 10px;
+          }
+          #address .right{
+            flex: 3;
+            position: relative;
+          }
+          #address .right div{
+            position: absolute;
+            width: 60%;
+            height: 15px;
+            background: rgba(255, 255, 255, 0.5);
+            left: 30%;
+            top: 50%;
+          }
+          #address .right div img{
+          width: 10px;
+          height: 10px;
+          margin-right: 10px;
+          margin-left: 10px;
+          }
+          #address .right img{
+            width: 100%;
+            height: 100%
+          }
+          #chooseDate{
+            display: flex;
+            padding: 15px 20px 20px 20px;
+            border: 1px solid gray;
+          }
+          #chooseDate h1{
+            margin-bottom: 15px;
+          }
+          #chooseDate .in_date{
+            flex: 1;
+            text-align: center;
+          }
+          #chooseDate .out_date{
+            text-align: center;
+            flex: 1;
+          }
+          #introduce{
+            padding-top: 15px;
+            padding-left: 15px;
+          }
+          #introduce h1{
+            margin-bottom: 20px;
+          }
+          #introduce h2{
+            margin-bottom: 10px;
+          }
+<!--日历-->
+          #cad{
+            width: 226px;
+            height: 220px;
+            border: 1px solid gray
+          }
+          #cad .cad_title{
+             border: 1px solid gray;
+             height: 30px;
+          }
+          #cad .cad_title ul{
+            margin-left: 35px;
+            text-align: center;
+          }
+         #cad .cad_title ul li{
+           float: left;
+           margin-left: 5px;
+           list-style: none;
+           line-height: 30px;
+           height: 24px;
+         }
+          #cad table tr td{
+            padding: 5px;
+            border: 1px solid gray;
+            width: 14px;
+            height: 14px;
+            font-size: 10px;
+          }
+          #cad table{
+            margin-left: 12px;
+          }
+      	</style>
+    </head>
+    <body>
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <div data-role="page" id="pageone">
+          <div data-role="header" id="header">
+      			<h1>头部</h1>
+      		</div>
+      		<div role="main" class="ui-content">
+      			<div id="title1">
+      				<img src="images/jiantou.png">
+      				<h1>酒店预订</h1>
+      			</div>
+      			<!--论波图-->
+      			<ul id="lunbo" data-role="listview">
+      				<div id="mainPic">
+      					<div class="pic_banner">
+      						<ul id="pic_banner_li">
+      							<li style="background: red"></li>
+      							<li style="background: yellow"></li>
+      							<li style="background: black"></li>
+      							<li style="background: green"></li>
+      							<li style="background: red"></li>
+      						</ul>
+      					</div>
+      					<div class="pic_nav">
+      						<ul id="pic_nav_li">
+      							<li  class="on"></li>
+      							<li></li>
+      							<li></li>
+      							<li></li>
+      						</ul>
+      					</div>
+      				</div>
+      			</div>
+      		</ul>
+      			<div id="address">
+               <div class="left">
+                 <h2>汉庭酒店绵阳五一广场</h2>
+                 <h3>府城取悦经路111号</h3>
+                 <h3>621000,绵阳,中国</h3>
+                 <div><img src="images/compass-direction-7.png"><span>0816-335211</span></div>
+                 <div><img src="images/phone1-32.png"><span>距离你<i>3.2</i>公里</span></div>
+               </div>
+               <div class="right">
+                <a href="###"><div><img src="images/compass-direction-7.png"><span>查看地图</span></div></a>
+                <img src="images/map.png">
+               </div>
+      			</div>
+            <div id="chooseDate">
+                <div class="in_date">
+                   <h1>入住日期</h1>
+                   <a href="#calendar" data-rel="popup" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">2016/10/22</a>
+                </div>
+                <div class="out_date">
+                   <h1>退房日期</h1>
+                   <a href="#calendar" data-rel="popup" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">请选择日期</a>
+                </div>
+                <div data-role="popup" data-position-to="window" id="calendar">
+                  <div id="cad">
+                    <div class="cad_title">
+                      <ul>
+                        <li><<</li>
+                        <li>十一月</li>
+                        <li>>></li>
+                        <li><<</li>
+                        <li>2016年</li>
+                        <li>>></li>
+                      </ul>
+                    </div>
+                      <table>
+                        <tr>
+                          <td>日</td>
+                          <td>一</td>
+                          <td>二</td>
+                          <td>三</td>
+                          <td>四</td>
+                          <td>五</td>
+                          <td>六</td>
+                        </tr>
+                        <tr>
+                          <td>31</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                      </table>
+                  </div>
+                </div>
+            </div>
+            <div id="introduce">
+              <h1>酒店简介</h1>
+              <h2>汉听就点位与无一广场，阿三发哈即开始发卡啥卡号框架哈市燃尽阿卡哈</h2>
+            </div>
+      		<div data-role="footer">
+          <div data-role="navbar" id="refer">
+             <ul>
+               <li><a href="###" data-ajax="true">选择客房</a></li>
+             </ul>
+           </div>
+          </div>
+        <script>
+        $(window).resize(getHeight)
+        	function getHeight(){
+        		var w=window.screen.width;
+        		var h=parseInt(w*(380/1024));
+        		var ali=document.getElementById('pic_banner_li').getElementsByTagName('li');
+        		var mainpic=document.getElementById('mainPic');
+        		var pic_nav=mainpic.getElementsByClassName("pic_nav");
+        		var nav_li=document.getElementById('pic_nav_li').getElementsByTagName('li');
+        		mainpic.style.height=h + "px";
+        		for (var i = 0; i < ali.length; i++){
+        			ali[i].style.height=h + "px";
+        		}
+        	}
+        	getHeight();
+
+
+        	$(function(){
+        		var apic=$("#pic_banner_li li");
+        		var anav=$("#pic_nav_li li");
+        		var pic_banner=$("#pic_banner_li");
+        		var pic_nav=$("#mainPic .pic_nav");
+        		var mainPic_w;
+        		var index=0;
+        		var timer;
+        		$(window).resize(moveStart);
+        		function moveStart(){
+        		   mainPic_w=apic.width();
+        		   anav.eq(Liindex).addClass("on").siblings().removeClass("on");
+                   pic_banner.animate({
+                    	'margin-left': -index*mainPic_w + "px"
+                    },500)
+        		}
+        		//点击nav
+        		anav.click(function(){
+        			mainPic_w=apic.width();
+        			index=$(this).index();
+        			$(this).addClass("on").siblings().removeClass("on");
+                    pic_banner.animate({
+                    	'margin-left': -index*mainPic_w + "px"
+                    },500)
+        		})
+        		//fn()
+        		function fn(){
+        			index++;
+        			if (index>4) {
+        				pic_banner.css({
+        					marginLeft:0 +"px"
+        				})
+                    	index=0;
+                    }
+                    Liindex=index;
+                    if (Liindex>3){
+                    	Liindex=0
+                    }
+                    moveStart();
+        		}
+        		//定时器
+        	    timer=setInterval(function(){
+        			fn();
+        		},2000)
+        		//鼠标移入移出时
+        		pic_banner.hover(function(){
+        			clearInterval(timer);
+        		},function(){
+        			timer=setInterval(function(){
+                         fn();
+        			},2000)
+        		})
+        		pic_nav.hover(function(){
+        			clearInterval(timer);
+        		},function(){
+        			timer=setInterval(function(){
+                    fn();
+        			},2000)
+        		})
+            //ajax
+            //提交入住日期和退房日期
+           $("#refer ul li a").click(function () {
+              $.post(
+                "url",
+                {
+                  startTime:"2016/12/10",
+                  endTime:"2016/12/20"
+                }
+              )
+           })
+        	})
+        </script>
+        <script src="https://code.jquery.com/jquery-{{JQUERY_VERSION}}.min.js" integrity="{{JQUERY_SRI_HASH}}" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-{{JQUERY_VERSION}}.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+        <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+        <!--
+        <script>
+            window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+            ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
+        </script>
+        <script src="https://www.google-analytics.com/analytics.js" async defer></script>-->
+    </body>

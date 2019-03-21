@@ -1,0 +1,16 @@
+
+//´´½¨±í
+create table news(
+newsnum char(6) NOT NULL,
+title char(100) NOT NULL,
+content text NOT NULL,
+newsdate date NOT NULL,
+introduce char(100)
+)
+
+create table connectus(
+email char(50) NOT NULL,
+message text,
+mesdate date NOT NULL,
+PRIMARY KEY(email,mesdate)
+)

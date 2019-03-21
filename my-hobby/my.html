@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src='js/jquery-1.11.1.min.js'></script>
+</head>
+<body>
+    <div id="banner">
+    	<div id="header">
+    		<div id="logn"><img src="pic/1.png"></div>
+    		<ul>
+    			<li><a href="###">Intorduce</a></li>
+    			<li><a href="###">Exercise</a></li>
+    			<li><a href="###">Art</a></li>
+    			<li><a href="###">Learing</a></li>
+    		</ul>
+    	</div>
+    	<!-- <div id="hobby"></div> -->
+    	<div id="backGround">
+    	    <div class="welcome">
+    	    	<div class="car"><img src="pic/2.jpg"></div>
+    	    </div>
+    		<div class="pic">
+    			<img src="pic/my.jpg">
+    		</div>
+    		<div class="int">
+    			<p>TBAO PROGRAMMER</p>
+    			<div class="line"></div>
+    			<p>That is who ?</p>
+    			<p>It is me<p>
+    		</div>
+    	</div>
+    	<div id="down">
+    	  <div id="down_banner">
+    	    <div class="nav_left"><i class="sharp-arrow">&#xe603;</i></div>
+    		<div class="more">MORE</div>
+    		<div class="nav_right"><i class="sharp-arrow">&#xe603;</i></div>
+          </div>
+    	</div>
+    	<div id="our">
+    	    <div class="our_pic">
+                <div class="our_banner">
+                    <ul>
+                        <li><img src="pic/gme.jpg"></li>
+                        <li><img src="pic/hui.jpg"></li>
+                        <li><img src="pic/wang.jpg"></li>
+                        <li><img src="pic/joy.jpg"></li>
+                        <li><img src="pic/gme.jpg"></li>
+                        <li><img src="pic/hui.jpg"></li>
+                        <li><img src="pic/wang.jpg"></li>
+                        <li><img src="pic/joy.jpg"></li>
+                        <li><img src="pic/gme.jpg"></li>
+                        <li><img src="pic/hui.jpg"></li>
+                    </ul>
+                </div>
+                <div id="cir_nav">
+                    <ul>
+                        <li><</li>
+                        <li>></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <div id="footer_banner">
+                <ul></ul>
+            </div>
+        </div>
+        <!-- <embed src="pic/music.mp3" width="300" height="50" autostart="true" loop="true" hidden="true"></embed> -->
+    </div>
+    <script type="text/javascript">
+    $(function(){
+    	var header_li=$('#header ul li');
+    	//var hobby=$('#hobby');
+        //var hobby_right=$("#hobby").position().left;
+        var body_music=$("body");
+    	//下拉框实现
+            //hobby.hide();
+                   /* header_li.hover(function(){
+                         var li_index=$(this).index();
+                         hobby.animate({'left':hobby_right + 110*li_index},100,function(){
+                             hobby.stop().fadeIn();
+                         });
+                         switch(li_index) {
+                             case 0:
+                             hobby.append("<img src='pic/1.jpg'>");
+                             break;
+                             case 1:
+                             hobby.append("<img src='pic/3.jpg'>");
+                             break;
+                             case 2:
+                             hobby.append("<img src='pic/5.jpg'>");
+                             break;
+                             default :
+                             hobby.append("<img src='pic/6.jpg'>");
+                             break;
+                         } 
+                     },function(){
+                         var hobby_img=$('#hobby img');
+                         hobby_img.remove();
+                         hobby.stop().hide();
+                     }) 
+                     hobby.hover(function(){
+                         $(this).fadeIn();
+                     },function(){
+                         $(this).hide();
+                     })*/
+           
+            
+        //car
+        var car=$('#backGround .welcome .car');
+        var welcome=$('#backGround .welcome')
+        var speed=(12000-Math.ceil(parseInt(car.css('marginLeft'))))/8;
+        var nowmargin_left=parseInt(car.css('marginLeft'));  
+       setTimeout(function(){
+        car.animate({
+                'margin-left':nowmargin_left + speed +'px'
+           },1100)
+        welcome.animate({
+            'backgroundPositionX': 0 + 'px'
+        },1000,function(){
+            setTimeout(function(){
+                welcome.animate({
+                   'backgroundPositionY':-200 + 'px'
+                },2000)
+            },2000) 
+        })
+       },2000)
+       //图片展示
+       var cir_nav=$("#cir_nav ul li");
+       var pic_ul=$("#our .our_pic .our_banner ul");
+       var index=3;
+       var timer=null;
+       var nowTime=new Date();
+       cir_nav.click(function(){
+           cirIndex=$(this).index()
+        if (cirIndex==0){
+           if (new Date()-nowTime>1000){
+            nowTime=new Date();
+            index++;
+            pic_ul.animate({
+            'margin-left': -355*index + 'px'
+        },1000,function(){
+             if (index==7) {
+            index=3;
+            pic_ul.css("margin-left",-1065)
+           }
+        })
+           }
+        }
+        else {
+            if (new Date()-nowTime>1000){
+                index--;
+                nowTime=new Date();
+           pic_ul.animate({
+            'margin-left': -355*index + 'px'
+        },1000,function(){
+            if (index==0) {
+                index=4;
+                pic_ul.css("margin-left",-1420)
+            }
+        })
+            }
+        }
+       }).mousedown(function(){
+                return false
+       })
+       function fn(){
+         index++;
+         pic_ul.animate({
+               'margin-left': -355*index + 'px'
+         },1000,function(){
+        if (index==7) {
+           index=3;
+           pic_ul.css("margin-left",-1065)
+         }
+         })
+       }
+       timer=setInterval(function(){
+             fn();   
+        },3000)
+       //鼠标移入箭头出现
+       var nav_ul=$("#cir_nav");
+       var our=$("#our .our_pic")
+       our.hover(function(){
+           clearInterval(timer);
+           nav_ul.css("display","block")
+       },function(){
+        timer=setInterval(function(){
+            fn()
+        },3000);
+        nav_ul.css("display","none")
+    })
+       //照片墙
+       var footer_banner=$("#footer_banner");
+       var footer_banner_ul=$("#footer_banner ul");
+       int();
+       var footer_ul_ali=$("#footer_banner ul li");
+       var footer_ul_img=$("#footer_banner ul li img");
+       liPosition();
+       changeAngle();
+       var logn=1;
+       $(window).resize(liPosition);
+       //添加li
+       function int(){
+        for (var i = 0; i < 12; i++) {
+        var footer_ul_li=$('<li><img src="pic/img/'+ (i+1) +'.jpg "></li>');
+            footer_banner_ul.append(footer_ul_li);
+        }
+       }
+      //li布局
+      function liPosition(){
+         var bannerW=footer_banner.width();
+         var bannerH=footer_banner.height();
+             w=(bannerW-125*4)/3;
+             h=(bannerH-125*3)/2;
+         footer_ul_ali.each(function(){
+            var $index=$(this).index();
+            var $index_w=$index%4;
+            var $index_h=parseInt(($index/4));
+            $(this).css({
+                left:(w+125)*$index_w + 'px',
+                top:(h+125)*$index_h + 'px'
+            })
+         })
+      }
+      //合成一张图片函数
+      function pClick(){
+          footer_ul_ali.each(function(){
+            var $index=$(this).index();
+            var $index_w=$index%4;
+            var $index_h=parseInt(($index/4));
+            var bannerW=footer_banner.width();
+            var bannerH=footer_banner.height();
+            w=(bannerW-125*4)/2;
+            h=(bannerH-125*3)/2;
+            $(this).css({
+                transition:'1s transiform,1s left,1s top',
+                left:125*$index_w + w +'px',
+                top:125*$index_h + h +'px',
+                backgroundPositionX:-$index_w*125 + 'px',
+                backgroundPositionY:-$index_h*125 + 'px'
+            });
+          })
+      }
+     //点击合成
+     footer_ul_ali.click(function(){
+        if (logn){
+         var $index_click=$(this).index();
+         pClick();
+         footer_ul_img.css({
+             transform:'scale(1)',
+             transition:'1s transform'
+         });
+         setTimeout(function(){
+             footer_ul_ali.css({
+                 backgroundImage:'url(pic/img/big/'+ ($index_click+1) +'.jpg)',
+             });
+             footer_ul_img.fadeOut(500);
+             },1000);
+         $(window).off('resize');
+            logn=0;
+        }else{
+            footer_ul_img.fadeIn(500,function(){
+                footer_ul_img.css({
+                    transform:'scale(0.9)',
+                    transition:'1s transform'
+                });
+            });
+            footer_ul_ali.css({
+                 backgroundImage:'',
+             });
+            liPosition();
+            logn=1;
+        }
+        
+     })
+     //图片旋转角度
+     function changeAngle(){
+        $("#footer_banner ul li").each(function(){
+            var angle=(Math.random()-0.5)*60;
+            $(this).css('transfrom','rotate('+angle+'deg)')
+        })
+     }
+     //
+    })
+
+    </script>
+</body>
+</html>

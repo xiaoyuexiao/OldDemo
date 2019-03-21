@@ -1,0 +1,276 @@
+       *{
+	    	margin:0px;
+	    	padding: 0px;
+	    }
+	    body{
+            height: 50%;
+	    	font-size: 62.5%;
+	    }
+        #header{
+        	width: 100%;
+        	height: 96px;
+        	position: relative;
+        }
+        #header .h_left{
+        	position: absolute;
+        	left: 30px;
+        	top: 26px;
+        	width: 26px;
+        	height: 46px;
+        }
+        #header .h_right{
+        	position: absolute;
+        	left: 50%;
+        	top: 30px;
+        	margin-left: -50px;
+        	font-family:"微软雅黑";
+        	font-size: 3.2em;
+        	color: rgb(51,51,51);
+        }
+        /* #name_1{
+        	width: 100%;
+        	height: 50px;
+        	background: yellow;
+        } */
+        #mainPic{
+        	width:100%;
+        	height: 380px;
+        	background: #f156f2;
+        	font-size: 5em;
+        	position: relative;
+        	overflow: hidden;
+        }
+        #mainPic .pic_nav{
+        	width: 140px;
+        	height: 30px;
+        	background: green;
+        	position: absolute;
+        	left: 50%;
+        	margin-left: -70px;
+        	bottom: 30px;
+        }
+        #mainPic .pic_nav ul li{
+        	list-style: none;
+        	width: 20px;
+        	height: 20px;
+        	margin-top: 2.5px;
+        	float: left;
+        	background: red;
+        	margin-left: 10px;
+        	border-radius: 50%;
+        }
+        #pic_banner_li{
+        	width: 500%;
+        }
+        #pic_banner_li li{
+        	list-style: none;
+        	width: 20%;
+        	height: 380px;
+        	float: left;
+        }
+        #address{
+        	width: 100%;
+        	height: 300px;
+        }
+        #address .left_char{
+        	width: 60%;
+        	height: 300px;
+        	float: left;
+        }
+        #address .left_char .phone{
+        	margin-left: 55px;
+        	font-size: 2.8em;
+        	margin-top: 15px;
+        	font-family:"微软雅黑";
+        	color: rgb(51,51,51);
+        }
+        #address .left_char .phone img{
+        	margin-right: 15px;
+        }
+        #address .left_char .distance{
+        	margin-left: 55px;
+        	font-size: 2.8em;
+        	font-family:"微软雅黑";
+        	color: rgb(51,51,51);
+        	margin-top: 15px;
+        }
+        #address .left_char .distance span span{
+            color: red;
+        }
+        #address .left_char .distance img{
+        	margin-right: 15px;
+        }
+        #address .left_char p{
+        	letter-spacing:5px;
+        }
+        #address .left_char p:first-child{
+        	font-size: 3.2em;
+        	font-family:"微软雅黑";
+        	color: rgb(51,51,51);
+        	margin-top: 20px;
+        	margin-left: 50px 
+        }
+        #address .left_char p:nth-child(2){
+        	font-size: 2.8em;
+        	font-family:"微软雅黑";
+        	color: rgb(51,51,51);
+        	margin-top: 15px;
+        	margin-left: 50px 
+        }
+        #address .left_char p:nth-child(3){
+        	font-size: 2.8em;
+        	font-family:"微软雅黑";
+        	color: rgb(51,51,51);
+        	margin-top: 15px;
+        	margin-left: 50px 
+        }
+        #address .right_map{
+        	width: 40%;
+        	height: 300px;
+        	float: right;
+        	position: relative;
+        }
+        #address .right_map img{
+        	width: 100%;
+        	height: 100%;
+        }
+        #address .right_map .look_map{
+        	width:73%;
+        	height:53px;
+        	position: absolute;
+        	left: 50%;
+        	top: 50%;
+        	margin-left: -36.5%;
+        	margin-top: -26px;
+        	background:rgba(200,200,200,0.6); 
+        }
+        #address .right_map .look_map img{
+        	width: 28px;
+        	height: 28px;
+        	margin-left:30%;
+        	margin-top: 10px;
+        }
+        #address .right_map .look_map span{
+        	color: rgb(51,51,51);
+        	font-size: 2.8em;
+        	font-family:"微软雅黑";
+        	margin-left: 20px;
+        }
+        #hourseDate{
+        	width: 100%;
+        	height: 196px;
+        	border: 1px solid gray;
+        }
+        #hourseDate .inTime{
+        	width: 30%;
+        	float: left;
+        	margin-top: 30px;
+        	margin-left:20%;
+        	height: 126px;
+        }
+        #hourseDate .inTime .inTime_title{
+        	text-align: center;
+        	display: block;
+        	margin-top: 0px;
+        	color: rgb(51,51,51);
+        	font-size: 3em;
+        	font-family: "微软雅黑"
+        }
+        #hourseDate .inTime .choseTime{
+        	background:rgb(51,108,236);
+            margin-top: 20px;
+            width: 60%;
+            height: 60px;
+            margin-left: 20%;
+        }
+        #hourseDate .inTime .choseTime div{
+        	float: left;
+            color: rgb(255,255,255);
+            font-family: "微软雅黑";
+            font-size: 2em;
+            margin-right: 10px;
+            margin-top: 15px;
+            margin-left: 10%;
+        }
+        #hourseDate .choseTime img{
+            cursor: pointer;
+        	margin-top: 10px;
+        	float: left;
+            width: 15%;
+            height: 50%;
+        }
+        #hourseDate .outTime{
+        	width: 30%;
+        	float: right;
+        	margin-top: 30px;
+        	margin-right:20%;
+        	height: 126px;
+        }
+        #hourseDate .outTime .inTime_title{
+        	text-align: center;
+        	display: block;
+        	margin-top: 0px;
+        	color: rgb(51,51,51);
+        	font-size: 3em;
+        	font-family: "微软雅黑"
+        }
+        #hourseDate .outTime .choseTime{
+        	background:rgb(51,108,236);
+            margin-top: 20px;
+            width: 60%;
+            height: 60px;
+            margin-left: 20%;
+        }
+        #hourseDate .outTime .choseTime div{
+        	float: left;
+            color: rgb(255,255,255);
+            font-family: "微软雅黑";
+            font-size: 2em;
+            margin-right: 10px;
+            margin-top: 15px;
+            margin-left: 20%;
+        }
+        #introduce{
+        	width: 100%;
+        	height: 150px;
+        }
+        #introduce p:first-child{
+            font-size: 3.2em;
+            line-height: 48px;
+            margin-left: 50px;
+            margin-top: 40px;
+            color: rgb(51,51,51);
+            font-family: "微软雅黑";
+        }
+        #introduce p:nth-child(2){
+            font-size: 2.4em;
+            line-height: 48px;
+            margin-left: 50px;
+            margin-top: 35px;
+            color: rgb(102,102,102);
+            font-family: "微软雅黑";
+        }
+        .on{
+            background: gray!important;
+        }
+        #footer{
+            width: 100%;
+            height: 90px;
+            background: blue;
+            position: relative;
+        }
+        #footer p{
+            position: absolute;
+            text-align: center;
+            display: block;
+            left: 50%;
+            margin-left: -1.5em;
+            top:15px;
+            color: rgb(255,255,255);
+            font-size: 3em;
+            font-family: "微软雅黑"
+        }
+        #footer p a{
+            color: rgb(255,255,255);
+            text-decoration: none;
+        }

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+	<style type="text/css">
+		*{
+			padding: 0px;
+			margin: 0px;
+		}
+		body{
+			font-size: 62.5%
+		}
+		#header{
+			width: 100%;
+			height: 2em;
+			background:rgb(233,233,233);
+			padding-top: 1em;
+		}
+		#header p{
+			text-align: center;
+		}
+		#content{
+			width: 100%;
+		}
+		#content .c_title{
+			width: 100%;
+			height: 3em;
+			position: relative;
+		}
+		#content .c_title .h_img{
+			width: 4em;
+			height:100%;
+			padding-left: 1em;
+		}
+		#content .c_title .h_img img{
+			height: 100%
+		}
+		#content .c_title .h_mark_cont{
+			width: 7em;
+			height: 100%;
+			position: absolute;
+			left: 50%;
+			top: 0;
+			margin-left: -3.5em;
+		}
+		#content .c_title .h_mark_cont p{
+			text-align: center;
+			font-family: "微软雅黑";
+			font-size: 1.6em;
+			padding-top: 0.3em;
+		}
+		#content .c_mark{
+			width: 100%;
+			height: 3em;
+			padding-bottom: 1px;
+			background:rgb(233,233,233);
+		}
+		#content .c_mark .c_m_mark{
+			width: 25%;
+			height: 3em;
+			border: 1px solid #ccc;
+			margin: 1px auto;
+			padding-left: 0.5em;
+		}
+		#content .c_mark .c_m_mark p{
+			line-height: 1.5em;
+			font-family: "微软雅黑";
+			text-align: center;
+		}
+		#content .h_li ul li:first-child{
+			margin-top: 1em
+		}
+		#content .h_li ul li{
+			width: 100%;
+			height: 7em;
+			margin-top: 3em;
+			display: flex
+		}
+		#content .h_li ul li p{
+			font-size: 1em;
+	        font-family: "微软雅黑"
+		}
+		#content .h_li ul li h2{
+			font-size: 1.5em;
+	        font-family: "微软雅黑"
+		}
+		#content .h_li .left_li{
+			height: 100%;
+			padding:1em;
+            flex: 1;
+		}
+		#content .h_li ul li .left_li img{
+			width: 100%;
+			height: 100%
+		}
+		#content .h_li .right_li{
+			height: 100%;
+			padding: 1em;
+            flex: 1;
+            position: relative;
+		}
+		#content .h_li .right_li span{
+			display: block;
+			float: right;
+			width: 1.5em;
+			height: 1.5em;
+			font-size: 1.5em;
+			font-weight: bold;
+			border-radius: 50%;
+			text-align: center;
+			margin-left: 0.5em;
+			margin-right: 0.5em;
+			cursor: pointer;
+			line-height: 1.5em;
+			margin-top: 0.3em;
+		}
+		#content .h_li .right_li span:hover{
+			background: rgb(233,233,233);
+		}
+		#content .h_li .right_li input{
+			width: 1.5em;
+			float: right;
+			border-radius: 1em;
+			border-style: "none";
+			outline: none;
+			margin-top: 0.3em;
+		}
+		#content .h_li .right_li p{
+			font-family: "微软雅黑";
+			float: left;
+		}
+		#content .h_li .right_li .jia_banner{
+            position: absolute;
+            bottom: 2em;
+            right: 1em
+		}
+		#content .h_li .right_li .total_pri{
+            font-size: 2em;
+		}
+		#footer{
+			width: 100%;
+			height: 2em;
+			background: pink;
+			margin-top: 3em;
+		}
+        #footer input{
+        	width: 100%;
+        	height: 100%;
+        	text-align: center;
+        	font-family: "微软雅黑"
+        }
+	</style>
+</head>
+<body>
+<div id="header"><p>头部</p></div>
+<div id="content">
+	<div class="c_title">
+	    <div class="h_img">
+	       <img src="images/jiantou.png">
+	    </div>
+		<div class="h_mark_cont">
+           <p>选择客房</p>
+		</div> 
+	</div>
+	<div class="c_mark">
+		<div class="c_m_mark">
+			<p>已选择：<span id="total_house">0</span>房间</p>
+			<p>总价：<span id="totle_money">0</span>元</p>
+		</div>
+	</div>
+	<div class="h_li">
+		<ul>
+			<li>
+				<div class="left_li"><img src="images/1.jpg"></div>
+				<div class="right_li">
+					<h2>大床房</h2>
+					<p>可居住2人，一张床绝对是开发包括部分哈桑吧</p>
+					<div class="jia_banner">
+					<p><i class="total_pri">200</i>&nbsp元</p>
+					<span class="jia">+</span>
+					<input class="_input" type="text" name="2" value="0" style="text-align: center;">
+					<span class="jian">-</span>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="left_li"><img src="images/1.jpg"></div>
+				<div class="right_li">
+					<h2>大床房</h2>
+					<p>可居住2人，一张床</p>
+					<div class="jia_banner">
+					<p><i class="total_pri">200</i>&nbsp元</p>
+					<span class="jia">+</span>
+					<input class="_input" type="text" name="2" value="0" style="text-align: center;">
+					<span class="jian">-</span>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="left_li"><img src="images/map.png"></div>
+				<div class="right_li">
+					<h2>大床房</h2>
+					<p>可居住2人，一张床</p>
+					<div class="jia_banner">
+					<p><i class="total_pri">200</i>&nbsp元</p>
+					<span class="jia">+</span>
+					<input class="_input" type="text" name="2" value="0" style="text-align: center;">
+					<span class="jian">-</span>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+<div id="footer">
+    <input type="button" name="1" value="预订">
+</div>
+<script type="text/javascript">
+   $(function(){
+   	var $input=$("._input");
+   	var _total_house=$("#total_house");
+   	var _totle_money=$("#totle_money");
+   	var _totle_pri=$(".total_pri");
+   	var _jia = $(".jia");
+   	var _jian = $(".jian");
+   	var m=0;
+    tianjiahouse();
+    changeHeight();  
+    changeHtml();
+    allPic();
+    loseBlur();
+    $(window).resize(changeHeight);
+    //获取每一个input的值相加的和
+    function changeHtml(){
+    	m=0;
+    	for (var i = 0; i < $input.length; i++) {
+       	m+=parseInt($input[i].value)
+       }
+       _total_house.html(m)
+    }
+    //重新编序列号
+    function paixu(){
+    for (var i = 0; i < _jia.length; i++) {
+     	_jia[i].index1=i;
+     	_jian[i].index2=i;
+     }}
+    //加与减的运算
+   	function tianjiahouse(){
+   	    paixu();
+    	_jia.click(function(){
+    		var $index=this.index1;
+    		$input[$index].value++;
+    		changeHtml();
+    		allPic();
+    		if ($input[$index].value<0) {
+        	$input[$index].value=0
+        }
+        })
+        _jian.click(function(){
+    		var $index=this.index2;
+    		$input[$index].value--;
+    		if ($input[$index].value<=0) {
+        	$input[$index].value=0
+            }
+            changeHtml();
+            allPic()
+        })
+   	}
+   	//总价格的运算""""""
+   	function allPic(){
+   		var y=0;
+   		for (var i = 0; i < $input.length; i++) {
+   			y+=parseInt(_totle_pri.eq(i).html())*parseInt($input.eq(i).val());
+   		}
+        _totle_money.html(y);
+   	}
+     //失去焦点时
+     function loseBlur(){
+     	$input.blur(function(){
+     		allPic();
+     		changeHtml();
+     	})
+     }
+     //li高度的控制
+     function changeHeight(){
+     	var ali=$("#content .h_li ul li");
+     	var ali_w=ali.width();
+     	ali.css("height",ali_w*0.3)
+     }  	
+     })
+	/*$(function(){
+		//需要传入的参数有{
+	      //  房间数量；
+	        //房间类型；
+	        //每种房间的数量；
+		//}
+		$.ajax({
+				type:"GET",
+				url:"http:/192.168.0.103/demo1.json",
+				dateType:"josn",
+				success:function(data){
+					alert(data.name)
+                     if (data.success){
+                     	$data.html("date.")
+                     }
+                     else{
+                     	$date.html("网络缓慢...")
+
+                     }
+				},
+				error:function(jqXHR){
+                     $date.html("网络缓慢...")
+				}
+			})	
+	})*/
+</script>
+</body>
+</html>

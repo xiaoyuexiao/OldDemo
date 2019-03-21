@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>后台主页</title>
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+</head>
+<body>
+	<div id="banner">
+		<div id="header">
+			<h2>BEST 9</h2>
+			<p>九次方后台管理系统</p>
+		</div>
+		<div id="content_l">
+			<ul>
+				<li>新闻设置</li>
+				<li>联系我们</li>
+			</ul>
+		</div>
+		<div id="content_r">
+			
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+//主页面功能
+		$(function(){
+			$("#content_r").load("newsinformation.html",function(){
+				loadAfterNewsinformation();
+		});
+		//新闻设置
+		$("#content_l ul li").eq(0).click(function(){
+			$("#content_r").load("newsinformation.html",function(){
+				loadAfterNewsinformation();
+			});
+		})
+
+		$("#content_l ul li").eq(1).click(function(){
+			$("#content_r").load("connect.html");
+		})
+	})
+
+//富文本函数
+function fwb(aspan){
+	frames["richtext"].document.designMode= "on";
+	var richtext =document.getElementById("richtext");
+	richtext.contentEditable="true";
+	//为每个span添加一个索引
+	for (var i = 0; i < aspan.length; i++) {
+		aspan[i].index = i;
+	}
+	//判断索引
+	for (var i = 0; i < aspan.length; i++) {
+		aspan[i].onclick=function(){
+			var nowindex = this.index;
+			switch(nowindex){
+				case 0: tochangetext("bold",null)
+				break;
+				case 1: tochangetext("italic",null)
+				break;
+				case 2: tochangetext("underline",null)
+				break;
+				case 3: tochangetext("insertimage","pic/18.jpg")
+			}
+		}
+	}
+	//不同的富文本编辑
+	function tochangetext(changetype,val){
+		frames["richtext"].document.execCommand(changetype,false,val);
+	}
+}
+//主页面内容区加载了newsinformation页面后执行的函数
+	function loadAfterNewsinformation(){
+		var con_r = $("#content_r");
+		//添加新闻按钮
+		$("#newsinformationadd button").eq(0).click(function(){
+			//为所有span设置富文本
+			con_r.load("news.html",function(){
+				//设置加载页面的富文本
+				var newsTool = document.getElementById("newswriteTool");
+				var allspan = newsTool.getElementsByTagName('span');
+				fwb(allspan);
+				//发送添加的信息
+				var rt;
+				var nle;
+				var nme;
+				var nce;
+				var nmu;
+				$("#newssubmit").click(function(){
+					rt = $("iframe").contents().find("body").html();
+					nle = $("#newsTitle input").eq(0).val();
+					nme = $("#newstime input").eq(1).val();
+					nce = $("#newstime input").eq(0).val();
+					nmu = $("#newsTitle input").eq(1).val();
+					$.post("phpfile/news.php",{
+						richtext1:rt,
+						newstitle:nle,
+						newstime:nme,
+						newsintroduce:nce,
+						newsnum:nmu
+					},function(data,status){
+						if (data==true) {
+							alert("添加成功！！");
+							con_r.load("newsinformation.html",function(){
+								loadAfterNewsinformation();
+							});
+						}else{
+							alert("请确认输入是否正确！！！");
+						}
+					})
+				})
+				//点击返回按钮返回
+				$("#newsback").click(function(){
+					con_r.load("newsinformation.html",function(){
+						loadAfterNewsinformation();
+					});
+				})
+			});
+
+		})
+	}
+</script>
+</html>

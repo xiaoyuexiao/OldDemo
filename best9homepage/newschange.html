@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Document</title>
+	<!-- <link rel="stylesheet" type="text/css" href="css/newschange.css"> -->
+	<link href="css/datePicker.css" rel="stylesheet" type="text/css" media="all" />
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		html,body{
+			height: 100%;
+		}
+		#newschangebanner{
+			width: 80%;
+			height: 500px;
+			margin: 0 auto;
+			background: #d3d3d3;
+		}
+		#newschangeheader{
+			height: 70px;
+			width: 100%;
+			background: #d3d3d3;
+			text-align: center;
+			line-height: 70px;
+			border-bottom: 1px solid #fff;
+		}
+		#newschangecontent{
+			width: 100%;
+			height: 430px;
+		}
+		#newschangewriteTool{
+			width: 100%;
+			height: 55px;
+			border-bottom: 1px solid #000;
+			margin: 0 auto;
+			margin-bottom: 10px;
+			background: #fff;
+		}
+
+		#newschangewriteTool ul li{
+			width: 16%;
+			height: 55px;
+			line-height: 55px;
+			list-style: none;
+			float: left;
+			text-align: center;
+		}
+		#newschangewriteTool ul li:first-child{
+			width: 20%;
+		}
+		#newschangewriteTool ul li span{
+			display: block;
+			margin: 10px auto;
+			width: 30%;
+			height: 35px;
+			background: #cfc;
+			cursor: pointer;
+			line-height: 35px;
+		}
+		/*新闻标题*/
+		#newschangeTitle{
+			width: 90%;
+			height: 50px;
+			margin: 0 auto;
+			margin-bottom: 10px;
+			background: #fff;
+		}
+		#newschangeTitle label{
+			display: block;
+			width: 10%;
+			margin-top: 6px;
+			float: left;
+			line-height: 40px;
+			text-align: right;
+		}
+		#newschangetitle{
+			margin-left: 2%;
+			margin-top: 3px;
+			width: 55%;
+			height: 40px;
+			float: left;
+		}
+		#newschangenum{
+			margin-left: 2%;
+			margin-top: 3px;
+			width: 19%;
+			height: 40px;
+			float: left;
+		}
+		/*时间*/
+		#newschangetime{
+			width: 90%;
+			height: 50px;
+			margin: 0 auto;
+			margin-bottom: 10px;
+			background: #fff;
+			font-size: 10px;
+		}
+		#newschangetime label{
+			display: block;
+			width: 10%;
+			margin-top: 6px;
+			float: left;
+			line-height: 40px;
+			text-align: right;
+
+		}
+		#newschangeintroduce{
+			margin-left: 2%;
+			margin-top: 3px;
+			width: 55%;
+			height: 40px;
+			float: left;
+		}
+		#datepicker{
+			margin-left: 2%;
+			margin-top: 3px;
+			width: 19%;
+			height: 40px;
+			float: left;
+		}
+		/*新闻内容*/
+		#newschangeContent{
+			height: 259px;
+			width: 90%;
+			margin: 0 auto;
+			margin-bottom: 5px;
+			background: #fff;
+		}
+		#newschangeContent p{
+			display: block;
+			width: 10%;
+			margin-top: 12px;
+			float: left;
+			line-height: 160px;
+			text-align: right;
+		}
+		#richtext{
+			margin-left: 4%;
+			margin-top: 12px;
+			width: 85%;
+			height: 160px;
+			float: left;
+			border: 1px solid #ccc;
+		}
+		#newschangesubmit{
+			width: 70px;
+			height: 35px;
+			display: block;
+			float: left;
+		}
+		#newschangeback{
+			width: 70px;
+			height: 35px;
+			display: block;
+			float: left;
+			margin-left: 30px;
+		}
+		#newschangefooter{
+			width: 200px;
+			height: 35px;
+			margin: 0 auto;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.date_input.pack.js"></script> 
+	<script type="text/javascript">
+	$(function(){
+		$('#datepicker').date_input();
+		})
+	</script>
+</head>
+<body>
+	<div id="newschangebanner">
+		<div id="newschangeheader">
+			<h2>新闻修改</h2>
+		</div>
+		<div id="newschangecontent">
+			<form>
+				<div id="newschangeTitle">
+					<label>标题:</label>
+					<input id="newschangetitle" type="text" name="newschangetitle">
+
+					<label>编号:</label>
+					<input id = "newschangenum" disabled="true" type="text" name="newschangenum">
+				</div>
+				<div id="newschangetime">
+					<label>简介:</label>
+					<input id="newschangeintroduce" type="text" name="newschangeint">
+
+					<label>时间:</label>
+					<input id="datepicker" type="text" name="newschangetime">
+
+				</div>
+				<div id="newschangeContent">
+					
+					<div id="newschangewriteTool">
+						<ul>
+							<li>文本工具：</li>
+							<li><span id="firspan"><strong>B</strong></span></li>
+							<li><span><i>I</i></span></li>
+							<li><span><u>U</u></span></li>
+							<li><span>A+</span></li>
+							<li><span>A+</span></li>
+						</ul>
+					</div>
+					<p>内容：</p>
+					<iframe name="richtext" id="richtext" ></iframe>
+				</div>
+				<div id="newschangefooter">
+					<input id="newschangesubmit" type="button" name="sub" value="提交">
+					<input id="newschangeback" type="button" name="sub" value="返回">
+				</div>
+				
+			</form>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	$(function(){
+		var rt;
+		var nle;
+		var nme;
+		var nce;
+		var nmu;
+		$("#newschangesubmit").click(function(){
+			rt = $("iframe").contents().find("body").html();
+			nle = $("#newschangeTitle input").eq(0).val();
+			nme = $("#newschangetime input").eq(1).val();
+			nce = $("#newschangetime input").eq(0).val();
+			nmu = $("#newschangeTitle input").eq(1).val();
+			$.post("phpfile/newsupdate.php",{
+				richtext1:rt,
+				newstitle:nle,
+				newstime:nme,
+				newsintroduce:nce,
+				newsnum:nmu
+			},function(data){
+				if (data==true) {
+					alert("成功更新");
+					$("#content_r").load("newsinformation.html",function(){
+						loadAfterNewsinformation();
+					});
+				}
+				else{
+					alert("更新失败");
+				}
+			})
+		})
+	})
+</script>
+</html>

@@ -1,0 +1,139 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+html,body{
+	height: 100%;
+}
+#newschangebanner{
+	width: 80%;
+	height: 500px;
+	margin: 0 auto;
+	background: #d3d3d3;
+}
+#newschangeheader{
+	height: 70px;
+	width: 100%;
+	background: #d3d3d3;
+	text-align: center;
+	line-height: 70px;
+	border-bottom: 1px solid #fff;
+}
+#newschangecontent{
+	width: 100%;
+	height: 430px;
+}
+#newschangewriteTool{
+	width: 100%;
+	height: 55px;
+	border-bottom: 1px solid #000;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	background: #fff;
+}
+
+#newschangewriteTool ul li{
+	width: 16%;
+	height: 55px;
+	line-height: 55px;
+	list-style: none;
+	float: left;
+	text-align: center;
+}
+#newschangewriteTool ul li:first-child{
+	width: 20%;
+}
+#newschangewriteTool ul li span{
+	display: block;
+	margin: 10px auto;
+	width: 30%;
+	height: 35px;
+	background: #cfc;
+	cursor: pointer;
+	line-height: 35px;
+}
+/*新闻标题*/
+#newschangeTitle{
+	width: 90%;
+	height: 50px;
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background: #fff;
+}
+#newschangeTitle label{
+	display: block;
+	width: 10%;
+	margin-top: 6px;
+	float: left;
+	line-height: 40px;
+	text-align: right;
+}
+#newschangeTitle input{
+	background: red;
+	margin-left: 4%;
+	margin-top: 3px;
+	width: 85%;
+	height: 40px;
+	float: left;
+}
+/*时间*/
+#newschangetime{
+	width: 90%;
+	height: 50px;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	background: #fff;
+}
+#newschangetime label{
+	display: block;
+	width: 10%;
+	margin-top: 6px;
+	float: left;
+	line-height: 40px;
+	text-align: right;
+}
+#newschangeintroduce{
+	margin-left: 2%;
+	margin-top: 3px;
+	width: 55%;
+	height: 40px;
+	float: left;
+}
+#datepicker{
+	margin-left: 2%;
+	margin-top: 3px;
+	width: 15%;
+	height: 40px;
+	float: left;
+}
+/*新闻内容*/
+#newschangeContent{
+	height: 259px;
+	width: 90%;
+	margin: 0 auto;
+	margin-bottom: 5px;
+	background: #fff;
+}
+#newschangeContent p{
+	display: block;
+	width: 10%;
+	margin-top: 12px;
+	float: left;
+	line-height: 160px;
+	text-align: right;
+}
+#richtext{
+	margin-left: 4%;
+	margin-top: 12px;
+	width: 65%;
+	height: 160px;
+	float: left;
+	border: 1px solid red;
+}
+#newschangesubmit{
+	width: 70px;
+	height: 35px;
+	display: block;
+	margin: 0 auto;
+}

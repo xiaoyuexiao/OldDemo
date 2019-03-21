@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link href="css/datePicker.css" rel="stylesheet" type="text/css" media="all" />
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		html,body{
+			height: 100%;
+		}
+		#newsbanner{
+			width: 80%;
+			height: 500px;
+			margin: 0 auto;
+			background: #d3d3d3;
+		}
+		#newsheader{
+			height: 70px;
+			width: 100%;
+			background: #d3d3d3;
+			text-align: center;
+			line-height: 70px;
+			border-bottom: 1px solid #fff;
+		}
+		#newscontent{
+			width: 100%;
+			height: 430px;
+		}
+		#newswriteTool{
+			width: 100%;
+			height: 55px;
+			border-bottom: 1px solid #000;
+			margin: 0 auto;
+			margin-bottom: 10px;
+			background: #fff;
+		}
+
+		#newswriteTool ul li{
+			width: 16%;
+			height: 55px;
+			line-height: 55px;
+			list-style: none;
+			float: left;
+			text-align: center;
+		}
+		#newswriteTool ul li:first-child{
+			width: 20%;
+		}
+		#newswriteTool ul li span{
+			display: block;
+			margin: 10px auto;
+			width: 30%;
+			height: 35px;
+			background: #cfc;
+			cursor: pointer;
+			line-height: 35px;
+		}
+		/*新闻标题*/
+		#newsTitle{
+			width: 90%;
+			height: 50px;
+			margin: 0 auto;
+			margin-bottom: 10px;
+			background: #fff;
+		}
+		#newsTitle label{
+			display: block;
+			width: 10%;
+			margin-top: 6px;
+			float: left;
+			line-height: 40px;
+			text-align: right;
+		}
+		#newstitle{
+			margin-left: 2%;
+			margin-top: 3px;
+			width: 55%;
+			height: 40px;
+			float: left;
+		}
+		#newsnum{
+			margin-left: 2%;
+			margin-top: 3px;
+			width: 19%;
+			height: 40px;
+			float: left;
+		}
+		/*时间*/
+		#newstime{
+			width: 90%;
+			height: 50px;
+			font-size: 10px;
+			margin: 0 auto;
+			margin-bottom: 10px;
+			background: #fff;
+		}
+		#newstime label{
+			display: block;
+			width: 10%;
+			margin-top: 6px;
+			float: left;
+			line-height: 40px;
+			text-align: right;
+		}
+		#newsintroduce{
+			margin-left: 2%;
+			margin-top: 3px;
+			width: 55%;
+			height: 40px;
+			float: left;
+		}
+		#datepicker{
+			margin-left: 2%;
+			margin-top: 3px;
+			width: 19%;
+			height: 40px;
+			float: left;
+		}
+		/*新闻内容*/
+		#newsContent{
+			height: 259px;
+			width: 90%;
+			margin: 0 auto;
+			margin-bottom: 5px;
+			background: #fff;
+		}
+		#newsContent p{
+			display: block;
+			width: 10%;
+			margin-top: 12px;
+			float: left;
+			line-height: 160px;
+			text-align: right;
+		}
+		#richtext{
+			margin-left: 4%;
+			margin-top: 12px;
+			width: 85%;
+			height: 160px;
+			float: left;
+			border: 1px solid #ccc;
+		}
+		#newssubmit{
+			width: 70px;
+			height: 35px;
+			display: block;
+			float: left;
+		}
+		#newsback{
+			width: 70px;
+			height: 35px;
+			display: block;
+			float: left;
+			margin-left: 30px;
+		}
+		#newsfooter{
+			width: 200px;
+			height: 35px;
+			margin: 0 auto;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.date_input.pack.js"></script> 
+	<script type="text/javascript">
+	$(function(){
+		$('#datepicker').date_input();
+	})
+	</script>
+</head>
+<body>
+	<div id="newsbanner">
+		<div id="newsheader">
+			<h2>新闻设置</h2>
+		</div>
+		<div id="newscontent">
+			<form>
+				<div id="newsTitle">
+					<label>标题:</label>
+					<input id="newstitle" type="text" name="newstitle">
+
+					<label>编号:</label>
+					<input id = "newsnum" type="text" name="newsnum">
+				</div>
+				<div id="newstime">
+					<label>简介:</label>
+					<input id="newsintroduce" type="text" name="newsint">
+
+					<label>时间:</label>
+					<input id="datepicker" type="text" name="newstime">      
+				</div>
+				<div id="newsContent">
+					
+					<div id="newswriteTool">
+						<ul>
+							<li>文本工具：</li>
+							<li><span id="firspan"><strong>B</strong></span></li>
+							<li><span><i>I</i></span></li>
+							<li><span><u>U</u></span></li>
+							<li><span>A+</span></li>
+						</ul>
+					</div>
+					<p>内容：</p>
+					<iframe name="richtext" id="richtext" ></iframe>
+				</div>
+				<div id="newsfooter">
+					<input id="newssubmit" type="button" name="sub" value="提交">
+					<input id="newsback" type="button" name="" value="返回">
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

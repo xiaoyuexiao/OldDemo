@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>具体留言信息</title>
+	<style type="text/css">
+		#connect_information_banner{
+			width: 70%;
+			height: 500px;
+			background: #d3d3d3;
+			margin: 0 auto;
+		}
+		/*主区域留言信息*/
+		#connect_information_content{
+			width: 80%;
+			height: 400px;
+			margin: 0 auto;
+			padding: 20px 5%;
+		}
+		#connect_information_content table{
+			width: 100%;
+		}
+		#connect_information_content table tr{
+			height: 50px;
+			width: 100%;
+			background: #ccc;
+		}
+		#connect_information_content table tr td:first-child{
+			width: 20%;
+			padding: 0 5%;
+			text-align: center;
+		}
+		#connect_information_content table tr td:last-child{
+			width: 70%;
+			padding: 0 5%;
+			text-align: left;
+		}
+		/*回复按钮*/
+		#connect_information_footer{
+			width: 100%;
+			height: 60px;
+		}
+		#connect_information_footer div{
+			margin: 10px auto;
+			width: 150px;
+			height: 40px;
+		}
+		#connect_information_footer div button{
+			width: 70px;
+			height: 40px;
+			float: left;
+			margin-left: 5px;
+		}
+	</style>
+</head>
+<body>
+	<div id="connect_information_banner">
+		<div id="connect_information_content">
+				<table>
+					<!-- <tr>
+						<td>邮箱：</td>
+						<td>1111866@qq.com</td>
+					</tr>
+					<tr>
+						<td>时间：</td>
+						<td>794594866@qq.com</td>
+					</tr>
+					<tr>
+						<td>留言：</td>
+						<td>794594866@qq.com撒放假撒看法哈就舒服啊师傅哈是开发好放假考试的</td>
+					</tr> -->
+				</table>
+		</div>
+		<div id="connect_information_footer">
+			<div>
+				<button>回复</button>
+				<button>返回</button>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	$("#connect_information_footer div button").eq(1).click(function(){
+		$("#content_r").load("connect.html");
+	})
+</script>
+</html>

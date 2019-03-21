@@ -1,0 +1,179 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title></title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <link rel="apple-touch-icon" href="apple-touch-icon.png">
+      <!-- Place favicon.ico in the root directory -->
+
+      <link rel="stylesheet" href="css/normalize.css">
+      <link rel="stylesheet" href="css/main.css">
+      <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+
+      <!-- meta使用viewport以确保页面可自由缩放 -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" type="text/css" href="jquerymobile/jquery.mobile-1.4.5.min.css">
+      <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+      <script type="text/javascript" src="jquerymobile/jquery.mobile-1.4.5.min.js"></script>
+        <style>
+        *{
+          margin: 0px;
+          padding: 0px;
+        }
+        body{
+          font-size: 62.5%;
+        }
+        #title2{
+          display: block;
+          position: relative;
+          height: 40px;
+          width: 100%;
+        }
+        #title2 img{
+          float: left;
+          width: 20px;
+          height: 30px;
+          margin-bottom: 5px;
+        }
+        #title2 h1{
+          position: absolute;
+          left: 50%;
+          margin-left: -40px;
+          float: right;
+        }
+        #all_house{
+          display: block;
+          background:rgba(25, 25, 25, 0.1);
+          margin-bottom: 20px;
+        }
+        #all_house div{
+          width: 40%;
+          border: 1px solid #ccc;
+          background: white;
+          margin: 0 auto;
+        }
+        #all_house div p{
+          margin: 0 auto;
+          font-size: 1.6em;
+          text-align: center;
+        }
+        #dif_house{
+          display: flex;
+          margin-top: 10px;
+          height: 100px;
+        }
+        #dif_house .house_pic{
+          flex: 3;
+          border: 1px solid red;
+          padding: 10px;
+        }
+        #dif_house .house_pic img{
+          width: 100%;
+          height: 100%;
+        }
+        #dif_house .house_imformation{
+          flex: 4;
+          padding: 10px;
+          border: 1px solid green;
+          position: relative;
+        }
+        #dif_house .house_imformation .inc_hourse{
+          position: absolute;
+          background: green;
+          width: 10em;
+          bottom: 1em;
+          right: 1em
+        }
+        #dif_house .house_imformation .inc_hourse div:first-child{
+          width: 1em;
+          float: left;
+          background: red;
+          margin-top: 10px;
+        }
+        #dif_house .house_imformation .inc_hourse input{
+          width: 20px;
+          padding: 0px!important;
+          background: red;
+        }
+        #dif_house .house_imformation .inc_hourse div:last-child{
+          float:left;
+          background:red
+        }
+        #dif_house .house_imformation h2:first-child{
+          margin-bottom: 10px;
+        }
+        #dif_house .house_imformation h2:last-child{
+        margin-left: 30px;
+        }
+        .ui-content{
+          padding: 0px!important;
+        }
+        #house_list li a{
+          padding-bottom: 0px;
+        }
+        </style>
+    </head>
+    <body>
+        <div data-role="page" id="page1">
+      		<div data-role="header">
+            <h1>头部</h1>
+      		</div>
+      		<div role="main" class="ui-content">
+            <div id="title2">
+              <img src="images/jiantou.png">
+              <h1>选择客房</h1>
+            </div>
+            <div id="all_house">
+                  <div>
+                    <p>已选择&nbsp&nbsp<span>0</span>房间</p>
+                    <p>总价&nbsp&nbsp&nbsp<span>0</span>元</p>
+                  </div>
+            </div>
+              <ul data-role="listview" id="house_list">
+                 <li>
+                     <a href="###">
+                          <img src="images/map.png">
+                          <p>咪咪大床房</p>
+                          <p>最多入住人数：2人</p>
+                          <p>床型：双人床1张</p>
+                     </a>
+                 </li>
+              </ul>
+            <div id="dif_house">
+              <div class="house_pic">
+                <img src="images/map.png">
+              </div>
+              <div class="house_imformation">
+                <h2>咪咪大床房</h2>
+                <p>最多入住人数：2人</p>
+                <p>床型：双人床1张</p>
+                <h2>140元</h2>
+                <div class="inc_hourse">
+                  <div>+</div>
+                  <input type="text" value="100" name="">
+                  <div>-</div>
+                </div>
+              </div>
+            </div>
+      		</div>
+      		<div data-role="footer">
+             <h1>头部</h1>
+      		</div>
+      	</div>
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.1.0.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+      <!--  <script>
+            window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+            ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
+        </script>
+        <script src="https://www.google-analytics.com/analytics.js" async defer></script>-->
+    </body>
+</html>

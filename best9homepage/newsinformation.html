@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>新闻信息</title>
+</head>
+<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	html,body{
+		height: 100%;
+	}
+	#newsinformationbanner{
+		width: 80%;
+		height: 500px;
+		margin: 0 auto;
+		background: #d3d3d3;
+	}
+	#newsinformationheader{
+		height: 70px;
+		width: 100%;
+		background: #d3d3d3;
+		text-align: center;
+		line-height: 70px;
+		border-bottom: 1px solid #fff;
+	}
+	#newsinformationcontent{
+		width: 100%;
+		overflow: auto;
+		height: 380px;
+	}
+	#newsinformationcontent ul li{
+		width: 90%;
+		height: 50px;
+		margin: 0 auto;
+		padding-left: 10px;
+		list-style: none;
+		line-height: 50px; 
+	}
+	#newsinformationcontent ul li button{
+		width: 70px;
+		height: 35px;
+		margin-left: 20px;
+	}
+	#newsinformationadd{
+		height: 50px;
+		border-top: 1px solid #eee;
+	}
+	#newsinformationadd button{
+		display: block;
+		margin: 0 auto;
+		margin-top: 7px;
+		width: 100px;
+		height: 35px;
+	}
+</style>
+<body>
+	<div id="newsinformationbanner">
+		<div id="newsinformationheader">
+			<h2>新闻信息</h2>
+		</div>
+		<div id="newsinformationcontent">
+			<ul>
+			
+			</ul>
+		</div>
+		<div id="newsinformationadd">
+			<button>增加新闻</button>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//从数据库加载新闻显示到主页面右侧页面
+		var nic = $("#newsinformationcontent ul");
+		$.ajax({
+			type:"get",
+			url:"phpfile/newsinformation.php",
+			datatype:"json",
+			success:function(data){
+				var datas = $.parseJSON(data);
+				for (var i = 0; i < datas.length; i++) {
+					var str = "<li><span>"+datas[i].newsnum+"</span><span>&nbsp.&nbsp&nbsp&nbsp"+datas[i].introduce+"</span><span>"+
+					"<button class='newsinformationchange'>修改</button>"+
+						"<button class='newsinformationdrop'>删除</button></span></li>";
+					nic.append(str);
+				}
+				//修改按钮点击事件	
+				$("#newsinformationcontent ul li span").delegate('button:first', 'click', function() { 
+					//得到修改新闻的编号
+					var infornum = $(this).parent().siblings().eq(0).text();
+					//将编号发送给newschange.php页面
+					$.post("phpfile/newschange.php",{
+						inum:infornum
+					},function(data,status){
+						//加载修改页面
+					 	$("#content_r").load("newschange.html",function(){
+			  				//为所有span设置富文本
+			  				var newsTool = document.getElementById("newschangewriteTool");
+			  				var allspan = newsTool.getElementsByTagName('span');
+			  				fwb(allspan);
+			  				//向修改页面填充数据
+			  				var datatojson = $.parseJSON(data);
+			  				$("#newschangetitle").val(datatojson.title);
+			  				$("#newschangenum").val(datatojson.newsnum);
+			  				$("#newschangeintroduce").val(datatojson.introduce);
+			  				$("#datepicker").val(datatojson.newsdate);
+			  				$("iframe").contents().find("body").html(datatojson.content);
+			  				//点击返回按钮返回
+			  				$("#newschangeback").click(function(){
+			  					$("#content_r").load("newsinformation.html",function(){
+			  						loadAfterNewsinformation();
+			  					});
+			  				})
+			  			});
+					})
+				}); 
+				//点击删除按钮
+				$("#newsinformationcontent ul li span").delegate('button:last', 'click', function() {
+					//得到修改新闻的编号
+					var infornum = $(this).parent().siblings().eq(0).text();
+					if (confirm("确认删除？")) {
+						$.post("phpfile/newsdrop.php",{
+							newnum:infornum
+						},function(data){
+							if (data==true) {
+								alert("删除成功！");
+								window.location.reload();//刷新当前页面.
+							}else{
+								alert("删除失败！");
+							}
+						})
+					}
+				});
+			},
+			error:function(xhr){
+				//alert(xhr.status);
+			}
+		})
+
+
+	})
+</script>
+</html>
