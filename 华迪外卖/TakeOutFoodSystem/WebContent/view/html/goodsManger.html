@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>商品管理页面</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+	<style type="text/css">
+		div
+		{
+			padding: 0;
+		}
+		.menu_name
+		{
+			line-height: 34px;
+			font-size: 18px;
+		}
+		.new_add
+		{
+			height: 30px;
+			line-height: 30px;
+		}
+		.good_search
+		{
+			float: right;
+		}
+		.writebtn
+		{
+			margin-bottom: 10px;
+		}
+		.good_mes div
+		{
+			margin-top: 10px;
+		}
+		.fade
+		{
+			background: rgba(0,0,0,0.3)!important;
+		}
+		.modal_btn
+		{
+			margin-top: 5px;
+		}
+	</style>
+</head>
+<body>
+	<div id="content">
+
+
+		<div class="col-md-12">
+
+			<div class="col-md-12">
+				<div class="col-md-5 menu_name">商品管理</div>
+				<div class="col-md-7">
+					<div class="col-md-6 good_search">
+					    <div class="input-group">
+					      <input type="text" class="form-control" placeholder="Search for...">
+					      <span class="input-group-btn">
+					        <button class="btn btn-default" type="button">Go!</button>
+					      </span>
+					    </div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-md-12 new_add">
+				<div class="col-md-1"></div>
+				<div class="col-md-11 add_good">+新增</div>
+			</div>
+<!-- 一项商品开始 -->
+			<div class="col-md-12">
+				<div class="col-md-2">
+					<img style="width: 100%;height: 84px;" src="../img/2.jpg">	
+				</div>
+				<div class="col-md-8">
+					<ul class="list-group">
+					  <li class="list-group-item">名称：麻辣香水鱼</li>
+					  <li class="list-group-item">价格：15¥    库存：10000  月售：233</li>
+					</ul>
+				</div>
+				<div class="col-md-2">
+					<!-- <a class="btn btn-primary active updategood" role="button">编辑</a> -->
+					<button type="button" class="btn btn-primary modal_btn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">编辑</button>
+					<div class="modal fade modal_background" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+					  <div class="modal-dialog " role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					        <h4 class="modal-title" id="exampleModalLabel1">商品编辑</h4>
+					      </div>
+					      <div class="modal-body good_mes">
+
+	        					<div class="row">
+	        					  <div class="col-md-12">
+	        					    <div class="input-group">
+	        					      <div class="input-group-btn">
+	        					        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">商品分类： <span class="caret"></span></button>
+	        					        <ul class="dropdown-menu">
+	        					         	<li><a href="#">饮品</a></li>
+	        	         				    <li><a href="#">魔法类</a></li>
+	        	         				    <li><a href="#">麻辣类</a></li>
+	        	         				    <li><a href="#">甜点</a></li>
+	        					        </ul>
+	        					      </div><!-- /btn-group -->
+	        					      <input type="text" class="form-control dropdown_menu_input" placeholder="请选择分类" aria-label="...">
+	        					    </div><!-- /input-group -->
+	        					  </div><!-- /.col-lg-6 -->
+	        					</div><!-- /.row -->
+	        					
+
+	        					<div class="input-group">
+	        					  <span class="input-group-addon" id="sizing-addon2">商品图片：</span>
+	        					  <input style="margin-left: 20px;" type="file" placeholder="Username" aria-describedby="sizing-addon2">
+	        					</div>
+
+	        					<div class="input-group">
+	        					  <span class="input-group-addon" id="sizing-addon2">商品名称：</span>
+	        					  <input type="text" class="form-control" placeholder="请输入名称" aria-describedby="sizing-addon2">
+	        					</div>
+	        					
+	        					<div class="input-group">
+	        					  <span class="input-group-addon" id="sizing-addon2">商品描述：</span>
+	        					  <input type="text" class="form-control " placeholder="请输入描述" aria-describedby="sizing-addon2">
+	        					</div>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					        <button type="button" class="btn btn-primary">提交</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+					
+					<button type="button" class="btn btn-primary modal_btn">下架</button>
+					<button type="button" class="btn btn-primary modal_btn">客户评价</button>
+
+				</div>
+			</div>
+<!-- 一项商品结束 -->
+<!-- 一项商品开始 -->
+			<div class="col-md-12">
+				<div class="col-md-2">
+					<img style="width: 100%;height: 84px;" src="../img/3.jpg">	
+				</div>
+				<div class="col-md-8">
+					<ul class="list-group">
+					  <li class="list-group-item">名称：麻辣香水鱼</li>
+					  <li class="list-group-item">价格：15¥    库存：10000  月售：233</li>
+					</ul>
+				</div>
+				<div class="col-md-2">
+					<!-- <a class="btn btn-primary active updategood" role="button">编辑</a> -->
+					<button type="button" class="btn btn-primary modal_btn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">编辑</button>
+					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					        <h4 class="modal-title" id="exampleModalLabel">商品编辑</h4>
+					      </div>
+					      <div class="modal-body good_mes">
+
+	        					<div class="row">
+	        					  <div class="col-md-12">
+	        					    <div class="input-group">
+	        					      <div class="input-group-btn">
+	        					        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">商品分类： <span class="caret"></span></button>
+	        					        <ul class="dropdown-menu">
+	        					         	<li><a href="#">饮品</a></li>
+	        	         				    <li><a href="#">魔法类</a></li>
+	        	         				    <li><a href="#">麻辣类</a></li>
+	        	         				    <li><a href="#">甜点</a></li>
+	        					        </ul>
+	        					      </div><!-- /btn-group -->
+	        					      <input type="text" class="form-control dropdown_menu_input" placeholder="请选择分类" aria-label="...">
+	        					    </div><!-- /input-group -->
+	        					  </div><!-- /.col-lg-6 -->
+	        					</div><!-- /.row -->
+	        					
+
+	        					<div class="input-group">
+	        					  <span class="input-group-addon" id="sizing-addon2">商品图片：</span>
+	        					  <input style="margin-left: 20px;" type="file" placeholder="Username" aria-describedby="sizing-addon2">
+	        					</div>
+
+	        					<div class="input-group">
+	        					  <span class="input-group-addon" id="sizing-addon2">商品名称：</span>
+	        					  <input type="text" class="form-control" placeholder="请输入名称" aria-describedby="sizing-addon2">
+	        					</div>
+	        					
+	        					<div class="input-group">
+	        					  <span class="input-group-addon" id="sizing-addon2">商品描述：</span>
+	        					  <input type="text" class="form-control " placeholder="请输入描述" aria-describedby="sizing-addon2">
+	        					</div>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					        <button type="button" class="btn btn-primary">提交</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+					<button type="button" class="btn btn-primary modal_btn">下架</button>
+					<button type="button" class="btn btn-primary modal_btn">客户评价</button>
+					<!-- <a class="btn btn-primary  active" role="button">下架</a>
+					<a class="btn btn-primary  active" role="button">客户评价</a> -->
+				</div>
+			</div>
+<!-- 一项商品结束 -->
+		</div>
+
+	</div>
+</body>
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+		$(function(){
+			var con = $("#right_content");
+			$(".updategood").click(function(){
+				con.load("updategood.html",);
+			})
+
+			$(".add_good").click(function(){
+				con.load("addgood.html");
+			})
+		})
+</script>
+</html>

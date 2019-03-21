@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+	<form id="uploadForm" action="../../upImg" enctype="multipart/form-data" method="post">
+		<input id="img" type="file" name="file">
+		<input type="file" name="">
+		<input id= "submit_img" type="button"  value="上传" name="sctp">
+	</form>
+
+
+</body>
+<script type="text/javascript">
+
+	$(function(){
+		// $("#submit_img").click(function(){
+		// 	$.ajax({
+		// 	    url: '../../upImg',
+		// 	    type: 'POST',
+		// 	    cache: false,
+		// 	    data: new FormData($('#uploadForm')[0]),
+		// 	    processData: false,
+		// 	    contentType: false
+		// 	}).done(function(res) 
+		// 	{
+		// 		$.ajax({
+		// 		    url: '../../upImgmes',
+		// 		    type: 'POST',
+		// 		    data: {
+		// 		    	"name":"lee"
+		// 		    }
+		// 		})
+		// 	}).fail(function(res) {
+		// 		alert("上传失败");
+		// 	});
+		// })
+
+		$("#submit_img").click(function(){
+			var fd = new FormData();
+			fd.append("name","xiao");
+			fd.append("file",$('#img')[0].files[0]);
+			$.ajax({
+			    url: '../../upImg',
+			    type: 'POST',
+			    cache: false,
+			    data: fd,
+			    processData: false,
+			    contentType: false
+			}).done(function(res) 
+			{
+				alert("上传完成");
+			}).fail(function(res) {
+				alert("上传失败");
+			});
+		})
+
+		
+	})
+	function uploadFiles(imgdata){   
+	    //var uploadFile = new FormData($("#headpic")[0]);
+	    let form_data=new FormData();
+            form_data.append('file', imgdata);
+
+	        $.ajax({  
+	            url:'../../upImg',  
+	            type:'POST',  
+	            data:form_data,  
+	            async: false,    
+	            cache: false,   
+	            contentType: false, //不设置内容类型  
+	            processData: false, //不处理数据  
+	            success:function(data){  
+	                console.log(data);  
+	                alert(data.msg);  
+	            },  
+	            error:function(){  
+	                alert("上传失败！");  
+	            }  
+	        }) 
+	}
+</script>
+</html>

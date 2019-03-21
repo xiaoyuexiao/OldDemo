@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>编辑商品</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+
+	<style type="text/css">
+		div
+		{
+			padding: 0;
+		}
+		.menu_name
+		{
+			line-height: 34px;
+			font-size: 18px;
+		}
+		.new_add
+		{
+			height: 30px;
+			line-height: 30px;
+		}
+		.good_search
+		{
+			float: right;
+		}
+		.writebtn
+		{
+			margin-bottom: 10px;
+		}
+		.updategood_submit
+		{
+			margin: 10px auto;
+		}
+		.good_mes div
+		{
+			margin-top: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div id="content">
+
+		<div class="col-md-12">
+
+			<div class="col-md-12">
+				<div class="col-md-5 menu_name">商品编辑</div>
+				<div class="col-md-7">
+				
+				</div>
+			</div>
+			
+			<div class="col-md-12 good_mes">
+				<div class="col-md-12" style="height: 50px;line-height: 50px;">基本信息</div>
+			
+
+				<div class="row">
+				  <div class="col-md-12">
+				    <div class="input-group">
+				      <div class="input-group-btn">
+				        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">商品分类： <span class="caret"></span></button>
+				        <ul class="dropdown-menu">
+				         	<li><a>饮品</a></li>
+         				    <li><a>魔法类</a></li>
+         				    <li><a>麻辣类</a></li>
+         				    <li><a>甜点</a></li>
+				        </ul>
+				      </div><!-- /btn-group -->
+				      <input type="text" class="form-control dropdown_menu_input" placeholder="请选择分类" aria-label="...">
+				    </div><!-- /input-group -->
+				  </div><!-- /.col-lg-6 -->
+				</div><!-- /.row -->
+				
+
+				<div class="input-group">
+				  <span class="input-group-addon" id="sizing-addon2">商品图片：</span>
+				  <input style="margin-left: 20px;" type="file" placeholder="Username" aria-describedby="sizing-addon2">
+				</div>
+
+				<div class="input-group">
+				  <span class="input-group-addon" id="sizing-addon2">商品名称：</span>
+				  <input type="text" class="form-control" placeholder="请输入名称" aria-describedby="sizing-addon2">
+				</div>
+				
+				<div class="input-group">
+				  <span class="input-group-addon" id="sizing-addon2">商品描述：</span>
+				  <input type="text" class="form-control " placeholder="请输入描述" aria-describedby="sizing-addon2">
+				</div>
+
+				<div>
+					<button type="button" class="btn btn-default updategood_submit btn-block">提交</button>
+				</div>
+				
+
+			</div>
+		</div>
+
+	</div>
+</body>
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$(".dropdown-menu li a").click(function(){
+			var text = $(this).html();
+			$(".dropdown_menu_input").eq(0).val(text);
+		})
+	})
+</script>
+</html>

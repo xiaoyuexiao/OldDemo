@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>选择商家</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../../bootstrap/css/bootstrap.min.css">
+	<script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
+	<style type="text/css">
+		body
+		{
+			background: rgb(245,245,245);
+		}
+		.cs_header
+		{
+			background: rgb(51,51,51);
+
+			height: 32px;
+			color: #fff;
+		}
+		.shop_user
+		{
+			margin: 0;
+			padding: 0;
+		}
+		.school
+		{
+			line-height: 32px;
+		}
+		.shop_user button
+		{
+			border: none;
+			background: rgb(51,51,51);
+			height: 32px;
+		}
+		.shop_user button:hover
+		{
+			color: #fff;
+		}
+		.cs_nav
+		{
+			height: 80px;
+			background: #fff;
+		}
+		.cs_shoptype
+		{
+			height:80px;
+			padding-top: 20px;
+			font-size: 20px;
+		}
+		.onchose
+		{
+			color: orange;
+		}
+		#cs_chose_type span
+		{
+			cursor: pointer;
+			padding: 0 5px;
+		}
+
+		.shop_list
+		{
+			margin-top: 10px;
+			padding: 30px 0;
+			background: #fff;
+		}
+		/*一个店铺的css*/
+		.one_shop
+		{
+			padding-bottom: 20px;
+		}
+		
+		.one_shop img
+		{
+			height: 156px;
+			width: 100%;
+		}
+		.shop_name
+		{
+			height: 22px;
+			margin-top: 10px;
+			font-size: 16px;
+			color: #313131;
+		}
+		.shop_status
+		{
+			margin-top: 10px;
+			color: #348bed;
+		}
+		.shop_min_price
+		{
+			padding: 0;
+			margin-top: 7px;
+		}
+		.shop_fee
+		{
+			padding: 0;
+			margin-top: 7px;
+		}
+		.shop_message_all
+		{
+			padding-top:15px;
+			padding-bottom: 15px;
+		}
+		.shop_message_all:hover
+		{
+			background: rgb(245,245,245);
+		}
+
+		.hidden_shop
+		{
+			display: none;
+		}
+
+
+
+
+
+		/**/
+		#pic_banner
+		{
+			margin: 0;
+			padding: 0;
+		}
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#window{
+			width: 1000px;
+			height: 500px;
+			margin: 20px auto;
+			overflow: hidden;
+			position: relative;
+		}
+		li{
+			list-style: none;
+		}
+		#window .banner{
+			width: 1000%;
+			margin-left: -1000px;
+		}
+		#window .nav_left:hover{
+			background:rgba(0,0,0,0.3);
+		}
+		#window .nav_right:hover{
+			background:rgba(0,0,0,0.3);
+		}
+		#window .nav_left{
+			width: 40px;
+			height: 40px;
+			background: gray;
+			color:white;
+			font-size: 20px;
+			position: absolute;
+			top: 250px;
+			left: 0px;
+			text-align: center;
+			font-weight: bold;
+			line-height: 40px;
+			cursor: pointer;
+			display: none;
+		}
+		#window .nav_right{
+			width: 40px;
+			position: absolute;
+			height: 40px;
+			background: gray;
+			color:white;
+			font-size: 20px;
+			top: 250px;
+			right: 0px;
+			text-align: center;
+			font-weight: bold;
+			line-height: 40px;
+			cursor: pointer;
+			display:none;
+		}
+		#window .banner_nav{
+			width: 50px;
+			height: 10px;
+			background: gray;
+			position: absolute;
+			left: 50%;
+			margin-left: -25px;
+			bottom:20px;
+			border-radius: 5px;
+		}
+		#window .banner_nav li{
+			width: 10px;
+			height: 10px;
+			display: block;
+			background: white;
+			float: left;
+			margin-left: 5px;
+			border-radius: 5px;
+		}
+		#window .banner .banner_pic li{
+			width: 1000px;
+			height: 500px;
+			float: left;
+		}
+		#window .banner ul li img{
+			width: 1000px;
+			height: 500px;
+		}
+		.on{
+			background: black!important;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<!-- 用户信息 -->
+		<div class="col-md-12 cs_header">
+			<div class="col-md-1"></div>
+			<div class="col-md-3 school">学校：<span></span></div>
+
+			<div class="col-md-7 shop_user">
+			  <div class="col-md-12">
+			  	<div class="input-group">
+			      <div class="input-group-btn">
+			        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">账号：<span id="user_phone"></span> <span class="caret"></span></button>
+			        <ul class="dropdown-menu">
+			         	<li id="myorders"><a>我的订单</a></li>
+     				    <li id="quite"><a>退出</a></li>
+			        </ul>
+			      </div><!-- /btn-group -->
+			    </div>
+			  </div><!-- /.col-lg-6 -->
+			</div><!-- /.row -->
+
+			<div class="col-md-1"></div>
+		</div>
+		<!--轮播图 -->
+		<div class="col-md-12" id="pic_banner">
+			<div id ="window">
+			    <div class="banner">
+			    	<ul class="banner_pic">
+			    	    <li><img src="../../img/3.jpg"></li>
+			    		<li><img src="../../img/1.jpg"></li>
+			    		<li><img src="../../img/2.jpg"></li>
+			    		<li><img src="../../img/3.jpg"></li>
+			    		<li><img src="../../img/1.jpg"></li>
+			    	</ul>
+			    </div>
+			    <div class="banner_nav">
+			    		<ul>
+			    			<li class="on"></li>
+			    			<li></li>
+			    			<li></li>
+			    		</ul>
+			    </div>
+			    <div class='nav_left'><</div>	
+			    <div class='nav_right'>></div>	
+			</div>
+		</div>
+		<!-- 店铺信息 -->
+		<div class="col-md-12 cs_nav">
+			<div class="col-md-1"></div>
+			<div class="col-md-10 cs_shoptype">
+				<div class="col-md-2">
+					<span class="glyphicon glyphicon-home"></span> &nbsp;商家分类
+				</div>
+				<div class="col-md-6" id="cs_chose_type">
+					<span class="onchose"> 全部</span>
+					<span> 主食</span>
+					<span> 下午茶</span>
+					<span> 甜点饮品</span>
+				</div>
+				<div class="col-md-4">
+					<div class="col-md-12 good_search">
+					    <div class="input-group">
+					      <input type="text" class="form-control" placeholder="Search for...">
+					      <span class="input-group-btn">
+					        <button class="btn btn-default" type="button">Go!</button>
+					      </span>
+					    </div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+		
+		<div class="col-md-12">
+			<div class="col-md-1"></div>
+			<div class="col-md-10 shop_list">
+			<!-- 此处动态添加以下格式代码 -->
+				<!-- <div class="col-md-4 one_shop">
+					<div class="col-md-12 shop_message_all">
+						<div class="col-md-12"><img src="../../img/1.jpg"></div>
+						<div class="col-md-12 shop_name shop_message">麦克多汉堡店</div>
+						<div class="col-md-12 shop_status shop_message">休息中，不接单</div>
+						<div class="col-md-12">
+							<div class="col-md-6 shop_min_price shop_message">起送：10元 </div>
+							<div class="col-md-6 shop_fee shop_message">配送费：1元</div>
+						</div>
+						<input type="hidden" name="token" value="123">
+					</div>
+				</div> -->
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+	<!-- 尾部 -->
+		<div class="col-md-12">
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	$(function(){
+		//导航下拉菜单处理
+		$(".shop_user ul li").hover(function(){
+			$(".shop_user button").css("color","white");
+		})
+		
+        
+        //请求该页面的数据
+        //1.请求内容：
+        			//a.学校附近的商家（商家的信息）
+        			var schoolid = "";
+        			//b.用户电话
+        			var phone = "";
+        			$.ajax({
+        				url:"../../../login/queryShopByUserPhone",
+        				type:"post",
+						success:function(data)
+						{
+							console.log("success");
+							if (data!="")
+							{
+								var data_ = JSON.parse(data);
+								var schoolname = data_.school;
+								schoolid = data_.schoolid;
+								phone = data_.user;
+								var shops = data_.shops;
+								//设置账号属于学校的名称
+								$(".school span").eq(0).text(schoolname);
+								$("#user_phone").html(data_.user);
+								//添加商家
+								var shopname = "";//名称
+								var shopfee = "";//配送费
+								var shopphone = "";//电话
+								var shopstartprice = "";//起送价
+								var shopstatus = "";//状态
+								var shoppic = "";//图片*
+								var shoptype = "";//类型
+								for (var i = 0; i < shops.length; i++) 
+								{
+									shopphone = shops[i].shopphone;
+									shopname = shops[i].shopname;
+									shopfee = shops[i].shopfee;
+									shopstartprice = shops[i].shopstartprice;
+									shops[i].shopstatus=="0"?shopstatus="休息中，不接单":shopstatus="正在营业";
+									shoppic = shops[i].shophousepicurl;
+									shoptype = shops[i].shoptype;
+
+									var shop = '<div class="col-md-4 one_shop" shop_type="'+shoptype+'"><div class="col-md-12 shop_message_all"><div class="col-md-12"><img src="../../img/'+shoppic+'"></div><div class="col-md-12 shop_name shop_message">'+shopname+'</div><div class="col-md-12 shop_status shop_message">'+shopstatus+'</div><div class="col-md-12"><div class="col-md-6 shop_min_price shop_message">起送：'+shopstartprice+'元 </div><div class="col-md-6 shop_fee shop_message">配送费：'+shopfee+'元</div></div><input type="hidden" name="token" value="'+shopphone+'"></div></div>';
+
+									$(".shop_list").eq(0).append(shop);
+
+									$(".one_shop input").each(function(){
+										if($(this).val() == shopphone)
+										{
+											$(this).parents(".one_shop").eq(0).on("click",function(){
+												var get_shop_phone = $(this).find("input").eq(0).val();
+												window.location.href=`./choseGoods.html?shopphone=${get_shop_phone}`;
+											});
+										}
+									})
+								}
+							}
+						},
+						complete:function(xhr)
+						{
+							console.log("complete");
+							var sessionstatus = xhr.getResponseHeader("SESSIONSTATUS");
+							if (sessionstatus == "TIMEOUT")
+							{
+								console.log(xhr.getResponseHeader("CONTEXTPATH"));
+								window.location.href= xhr.getResponseHeader("CONTEXTPATH");
+							}
+
+						},
+						error:function(status)
+						{
+							console.log("error");
+							alert("网络问题，登录失败！！");
+						}
+        			})
+        			//b.按照店铺类型进行条件查询
+        			//商家分类处理
+        			$("#cs_chose_type span").click(function(){
+        				$(this).addClass("onchose").siblings().removeClass("onchose");
+        				var index = $(this).index();
+        				if (index == 0) 
+        				{
+        					$(".shop_list .one_shop").each(function(){
+    							$(this).removeClass("hidden_shop");
+        					})
+        				}
+        				else
+        				{
+        					$(".shop_list .one_shop").each(function(){
+        						if($(this).attr("shop_type") != index)
+    							{
+    								$(this).addClass("hidden_shop");
+    							}
+    							else
+    							{
+    								$(this).removeClass("hidden_shop");
+    							};
+        					})
+        				}
+        			})
+
+        			   //查看我的订单
+        				$("#myorders").click(function(){ 
+        					var schoolname = $(".school span").eq(0).text();
+        					window.location.href=`./myOrders.html?user_phone=${phone}&schoolname=${schoolname}`;
+        				})
+        				//退出登录
+        				$("#quite").click(function(){
+        					$.ajax({
+        						url:"../../../userQuite",
+        						type:"post",
+        						data:{
+        							user_phone:phone
+        						},
+        						success:function(data){
+        							var data_ = JSON.parse(data);
+        							if (data_.info == "1")
+        							{
+        								window.location.href=`../login.html`;
+        							}
+        							else
+        							{
+        								alert("退出失败，网络问题！");
+        							}
+        						},
+        						error:function(){
+        							alert("网络问题，稍后再试！！");
+        						}
+        					})
+        					
+        				})
+
+
+
+
+
+					//点击导航移动
+					var banner_nav_li=$("#window .banner_nav li");
+					var banner=$(".banner ul");
+					var li_width=$("#window .banner ul li").width();
+					var index=0;
+					var timer=null;
+					var nowtime=new Date();
+					speed=2000;
+					banner_nav_li.click(function(){
+						index=$(this).index();
+						$(this).addClass("on").siblings().removeClass("on");
+			            banner.animate({
+			            	'margin-left': -li_width*index + 'px' 
+			            },500)
+					})
+					//点击箭头移动
+					var nav_left=$("#window .nav_left");
+					var nav_right=$("#window .nav_right");
+					var window_pic=$("#window")
+					window_pic.hover(function(){
+						clearInterval(timer);
+						nav_right.show();
+						nav_left.show();
+					},function(){
+						timer=setInterval(function(){
+			    	        fn();
+			            },speed)
+						nav_right.hide();
+						nav_left.hide();
+					})
+					nav_left.click(function(){
+						fn();
+					}).mousedown(function(){
+			            return false
+					})
+					nav_right.click(function(){
+						if (new Date()-nowtime>500){
+					    nowtime=new Date();
+						index--;
+						if (index<-1) {
+							index=0
+						}
+						var LIindex=index;
+						if (LIindex) {} else {}
+						banner_nav_li.eq(index).addClass("on").siblings().removeClass("on");
+						banner.animate({
+						 'margin-left': -li_width*index + 'px' 
+						},500,function(){
+							if (index<=-1) {
+								index=2;
+			                    banner.css('margin-left',-li_width*index)
+							}
+						})}
+					}).mousedown(function(){
+			            return false
+					})
+
+
+							function fn(){
+								if (new Date()-nowtime>500) {
+					            nowtime=new Date();
+								index++;
+							      if (index>banner_nav_li.length) {
+									index=0;
+								}
+								Liindex=index;
+								if (Liindex>=banner_nav_li.length)Liindex=0;
+								banner_nav_li.eq(Liindex).addClass("on").siblings().removeClass("on");
+								banner.animate({
+								 'margin-left': -li_width*index + 'px' 
+								},500,function(){
+									if (index>=banner_nav_li.length) {
+										index=0;
+					                    banner.css('margin-left',0)
+									}
+								})}
+							}
+					    timer=setInterval(function(){
+					    	fn();
+					    },speed)
+	})
+</script>
+</html>

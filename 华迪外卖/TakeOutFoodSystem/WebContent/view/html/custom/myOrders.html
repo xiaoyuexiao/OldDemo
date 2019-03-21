@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>我的订单</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../../bootstrap/css/bootstrap.min.css">
+	<script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
+	<style type="text/css">
+		body
+		{
+			
+			background: url("../../img/background3.jpg");
+			background-size: 100% auto;
+			color: #000;
+		}
+		.cs_header
+		{
+			background: rgb(51,51,51);
+			height: 32px;
+			color: #fff;
+		}
+		.good_user
+		{
+			margin: 0;
+			padding: 0;
+		}
+		.school
+		{
+			line-height: 32px;
+		}
+		.good_user button
+		{
+			border: none;
+			background: rgb(51,51,51);
+			height: 32px;
+		}
+		.good_user button:hover
+		{
+			color: #fff;
+		}
+		/*订单列表的css*/
+		.my_orders
+		{
+			background: #fff;
+			padding-top:10px;
+			padding-bottom:10px;
+			margin-top: 20px;
+			opacity: 0.8;
+		}
+		.one_order
+		{
+			margin-top: 30px;
+		}
+		.one_order img
+		{
+			width: 100%;
+		}
+		.one_order_banner
+		{
+			padding: 10px;
+			border-bottom: 1px solid #ccc;
+		}
+		.order_status
+		{
+			color: #348bed;
+		}
+		.shop_name
+		{
+			font-size: 18px;
+			height: 25px;
+			line-height: 25px;
+		}
+		.order_time
+		{
+			font-size: 10px;
+			height: 25px;
+			line-height: 25px;
+		}
+	</style>
+</head>
+<body>
+	<!-- 顶部导航条-->
+	<div class="col-md-12 cs_header">
+		<div class="col-md-1"></div>
+		<div class="col-md-3 school">学校：<span></span></div>
+
+		<div class="col-md-7 good_user">
+		  <div class="col-md-12">
+		  	<div class="input-group">
+		      <div class="input-group-btn">
+		        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">账号：<span id="user_phone">15700218161</span><span class="caret"></span></button>
+		        <ul class="dropdown-menu">
+		         	<li id="myorders"><a>我的订单</a></li>
+ 				    <li id="quite"><a>退出</a></li>
+		        </ul>
+		      </div><!-- /btn-group -->
+		    </div>
+		  </div><!-- /.col-lg-6 -->
+		</div><!-- /.row -->
+
+		<div class="col-md-1"></div>
+	</div>
+
+	<!-- 中间内容 -->
+	
+	<div class="col-md-12">
+		
+		
+		<div class="col-md-2"></div>
+		<div class="col-md-8 my_orders">
+			<div class="col-md-12">
+				<div class="col-md-12">
+					<h2>我的订单</h2>
+				</div>
+			</div>
+		
+			<!-- 一个订单 -->
+			<!-- <div class="col-md-12 one_order">
+				<div class="col-md-12 one_order_banner">
+					<div class="col-md-2">
+						<img src="../../img/1.jpg">
+					</div>
+					<div class="col-md-7">
+						<div class="shop_name">麦克多</div>
+						<p class="order_time">2018-06-13 12:12:12</p>
+					</div>
+					<div class="col-md-3 order_status">
+						订单已经送达
+					</div>
+				</div>
+
+				<div class="col-md-12 one_order_banner">
+					
+					<div class="col-md-12">
+						<div class="col-md-2"></div>
+						<div class="col-md-7">口水鸡套饭*<span>2</span></div>
+						<div class="col-md-3">¥17.60</div>
+					</div>
+
+					<div class="col-md-12">
+						<div class="col-md-2"></div>
+						<div class="col-md-7">口水鸡套饭*<span>2</span></div>
+						<div class="col-md-3">¥17.60</div>
+					</div>
+
+					<div class="col-md-12">
+						<div class="col-md-2"></div>
+						<div class="col-md-7">口水鸡套饭*<span>2</span></div>
+						<div class="col-md-3">¥17.60</div>
+					</div>
+				</div>
+
+				<div class="col-md-12 one_order_banner">
+					<div class="col-md-10">
+						<div class="col-md-10"></div>
+						<div class="col-md-2">总额：<span>100</span></div>
+					</div>
+					<div class="col-md-2">
+						<button class="btn btn-default" type="">评价</button>
+					</div>
+				</div>
+			</div> -->
+		</div>
+		<div class="col-md-2"></div>
+	</div>
+</body>
+<script type="text/javascript">
+	$(function(){
+		//取出传过来的学校和用户电话
+		let url= window.location.href;
+        let info = url.split('=');
+        let user_phone = info[1].substring(0,info[1].indexOf("&"));//用户电话
+        let schoolname = info[2];//学校名称
+        //向页面中设置信息
+        $(".school span").eq(0).text(decodeURI(schoolname));
+        $("#user_phone").text(user_phone);
+
+        //查看我的订单
+     	$("#myorders").click(function(){
+     		var phone =  user_phone;
+     		window.location.href=`./myOrders.html?user_phone=${phone}&schoolname=${schoolname}`;
+     	})
+     	//退出登录
+     	$("#quite").click(function(){
+     		$.ajax({
+     			url:"../../../userQuite",
+     			type:"post",
+     			data:{
+     				user_phone:user_phone
+     			},
+     			success:function(data){
+     				var data_ = JSON.parse(data);
+     				if (data_.info == "1")
+     				{
+     					window.location.href=`../login.html`;
+     				}
+     				else
+     				{
+     					alert("退出失败，网络问题！");
+     				}
+     			},
+     			error:function(){
+     				alert("网络问题，稍后再试！！");
+     			}
+     		})
+     		
+     	})
+
+
+        //请求该用户的历史订单信息
+        $.ajax({
+        	url:"../../../queryOrdersByUserphone",
+ 			type:"post",
+ 			data:{
+ 				userphone:user_phone
+ 			},
+ 			success:function(data){
+ 				var data_ = JSON.parse(data);
+ 				//取出订单的基本信息
+ 				var allOrders = data_.info;
+ 				var shoppic = "";//商家图片
+ 				var shopname = "";//商家名字
+ 				var ordertime = "";//下单时间
+ 				var orderstatus = "";//订单状态
+ 				var ordermoney = "";//订单总额
+ 				var order_str = "";
+ 				var orderid = "";
+ 				//遍历所有订单
+ 				for (var i = 0; i < allOrders.length; i++)
+ 				{
+ 					shoppic = allOrders[i].shophousepicurl;
+ 					shopname = allOrders[i].shopname;
+ 					ordertime = allOrders[i].orderstarttime;
+ 					orderstatus = allOrders[i].orderstatus == "0"?"未完成订单":"已经完成";
+ 					ordermoney = allOrders[i].ordermoney;
+ 					orderid = allOrders[i].orderid;
+ 					var date = new Date();
+
+
+ 					console.log(date.getTime() - ordertime);
+ 					if ((date.getTime() - ordertime) > 7200*1000)
+ 					{
+ 						orderstatus = "已经完成";
+ 					}
+ 					else
+ 					{
+ 						orderstatus = "未完成订单";
+ 					}
+
+ 					order_str = '<div class="col-md-12 one_order"><div class="col-md-12 one_order_banner"><div class="col-md-2"><img src="../../img/'+shoppic+'"></div><div class="col-md-7"><div class="shop_name">'+shopname+'</div><p class="order_time">'+timestampToTime(ordertime)+'</p></div><div class="col-md-3 order_status">'+orderstatus+'</div></div><div class="col-md-12 one_order_banner">';
+
+
+ 					//取出订单的商品信息
+ 					var goods = allOrders[i].goods;
+ 					var goodname = "";//商品名称
+ 					var goodprice = "";//商品单价
+ 					var goodnum = "";//商品数量
+ 					for (var j = 0; j < goods.length; j++)
+ 					{
+ 						goodname = goods[j].goodname;
+ 						goodprice = goods[j].goodprice;
+ 						goodnum = goods[j].goodnum;
+
+ 						order_str = order_str + '<div class="col-md-12"><div class="col-md-2"></div><div class="col-md-7">'+goodname+'*<span>'+goodnum+'</span></div><div class="col-md-3">¥'+goodprice+'</div></div>';
+ 					}
+
+ 					order_str = order_str + '</div><div class="col-md-12 one_order_banner"><div class="col-md-10"><div class="col-md-10"></div><div class="col-md-2">总额：<span>'+ordermoney+'</span></div></div><div class="col-md-2"><button class="btn btn-default eva_btn" eva_order="'+orderid+'" type="">评价</button></div></div></div>';
+
+ 					$(".my_orders").append(order_str);
+
+ 					$(".eva_btn").each(function(){
+ 						if ($(this).attr("eva_order") == orderid)
+ 						{
+ 							if (orderstatus == "未完成订单") 
+ 							{
+ 								$(this).attr("disabled","disabled");
+ 							}
+
+ 							$(this).on("click",function(){
+ 								var orderid = $(this).attr("eva_order");
+ 								if(orderstatus == "已经完成")
+ 								{
+ 									window.location.href = `./evaluate.html?user_phone=${user_phone}&schoolname=${schoolname}&orderid=${orderid}`;
+ 								}
+
+ 							})
+ 						}
+ 					})
+ 				}
+ 			},
+ 			error:function(){
+ 				alert("网络问题，稍后再试！！");
+ 			}
+        })
+	})
+
+	function timestampToTime(timestamp) {
+        var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+        Y = date.getFullYear() + '-';
+        M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+        D = date.getDate() + ' ';
+        h = date.getHours() + ':';
+        m = date.getMinutes() + ':';
+        s = date.getSeconds();
+        return Y+M+D+h+m+s;
+    }
+</script>
+</html>

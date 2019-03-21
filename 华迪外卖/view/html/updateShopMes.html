@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>更新信息</title>
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+	<style type="text/css">
+		div
+		{
+			padding: 0;
+		}
+		.menu_name
+		{
+			line-height: 34px;
+			font-size: 18px;
+		}
+		.new_add
+		{
+			height: 30px;
+			line-height: 30px;
+		}
+		.good_search
+		{
+			float: right;
+		}
+		.writebtn
+		{
+			margin-bottom: 10px;
+		}
+		.updategood_submit
+		{
+			margin: 10px auto;
+		}
+		.good_mes div
+		{
+			margin-top: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="col-md-12 good_mes">
+
+			<div class="page-header">
+			  <h3><small>修改信息</small></h3>
+			</div>
+			<form method="post" id="form" method="post" enctype="multipart/form-data">
+				
+			
+			<div class="input-group">
+			  <span class="input-group-addon" id="sizing-addon2">店铺名称：</span>
+			  <input type="text" class="form-control" name="shopname" placeholder="请输入名称" aria-describedby="sizing-addon2">
+			</div>
+			
+			<div class="input-group">
+			  <div class="input-group">
+			  	<input id="lefile" type="file" name="file" style="display:none"> 
+			    <span class="input-group-addon" id="basic-addon1">店铺图标：</span>
+			    <input type="text" id="photoCover"  class="form-control"  placeholder="请选择图片" aria-describedby="basic-addon2">
+			    <span class="input-group-addon" onclick="$('input[id=lefile]').click();">请选择图片</span> 
+			  </div>
+			</div>
+
+			<div class="input-group">
+				  <span class="input-group-addon">配送费(￥)：&nbsp;</span>
+	 			  <input type="text" name="shopstartprice" class="form-control gooddetail" placeholder="请输入配送费" aria-describedby="sizing-addon2">
+	 			  <span class="input-group-addon">.00</span>
+			</div>
+
+
+			<div class="input-group">
+			  <span class="input-group-addon">起送价(￥)：&nbsp;</span>
+			  <input type="text" name="shopfee"  class="form-control gooddetail" placeholder="请输入起送价格" aria-describedby="sizing-addon2">
+			  <span class="input-group-addon">.00</span>
+			</div>
+
+			<div class="input-group">
+			  <span class="input-group-addon" id="sizing-addon2">详细地址：</span>
+			  <input type="text" name="shopaddress"  class="form-control gooddetail" placeholder="请输入店铺详细地址" aria-describedby="sizing-addon2">
+			</div>
+			
+
+			<div class="input-group">
+			  <span class="input-group-addon" id="sizing-addon2">密码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+			  <input type="password" name="shoppwd"  class="form-control gooddetail" placeholder="请输入密码" aria-describedby="sizing-addon2">
+			</div>
+
+			<button type="button" id="commit_shopmes" class="btn btn-default btn-block">提交</button>
+		</form>
+	</div>
+</body>
+<script type="text/javascript">
+	$('input[id=lefile]').change(function() { 
+		$('#photoCover').val($(this).val()); 
+	});
+
+	$("#commit_shopmes").click(function(){
+		$.ajax({
+			url:"../../ownerLogin/updateShopMes",
+			type:"POST",
+			data:new FormData($("#form")[0]),
+			cache: false,
+			processData: false,
+	    	contentType: false,
+	    	dataType:'json',
+			success:function(data_)
+			{
+				console.log(data_.status);
+				alert("修改成功！！");
+			},
+			error:function(xhr)
+			{
+				alert("网络问题！")
+			}
+		})
+	})
+</script>
+</html>

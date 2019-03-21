@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>主界面</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+
+	<style type="text/css">
+		html,body
+		{
+			margin: 0;
+			padding: 0;
+		}
+		/* 总容器 */
+		#container{
+			background: #fafafa;
+			border: 20px solid #fafafa;
+		}
+		.the_sencend_menu
+		{
+			display: none;
+		}
+		/* 头部 */
+		#header
+		{
+			height: 110px;
+			width: 100%;
+			padding-top: 10px;
+			/* background: rgba(228,60	,58,0.9); */
+			background: rgb(81, 130, 242);
+
+			color: white;
+			margin: auto 0;
+			margin-bottom: 20px;
+
+		}
+		#header div img
+		{
+			width: 70px;
+			height: 70px;
+		}
+		.shopname
+		{
+			line-height: 70px;
+			font-size: 25px;
+			margin-left: 90px;
+		}
+		.shopmes
+		{
+			height: 30px;
+			line-height: 30px;
+			margin-left: 20px;
+			float: left;
+		}
+		.shopmes span
+		{
+			display: block;
+			float: left;
+			margin-right: 25px;
+		}
+		/* 左侧内容 */
+		#left_bar{
+			/* background: rgba(81, 130, 242,0.9); */
+			background: #333;
+			opacity: 0.9;
+			border-right: 10px solid #fafafa;
+			height: 100%;
+		}
+		#left_bar ul li
+		{
+			margin-top: 10px;
+		}
+		/* ul下面的li */
+		.the_sencend_menu
+		{
+			margin: 0px auto;
+			margin-top: 10px;
+			height: 20px;
+			line-height: 20px;
+			text-align: center;
+			width: 51%;
+			background: rgb(223,240,216);
+			background: rgba(228,60	,58,0.8);
+			color: #fff;
+			border-radius: 4px;
+			font-size: 14px;
+			cursor: pointer;
+		}
+		/* 商品管理 订单管理 店铺信息按钮 */
+		.menu_head
+		{
+			width: 60%;
+			height: 30px;
+			line-height: 30px;
+			margin: 0 auto;
+			margin-top: 20px;
+			background: #ccc;
+			background: rgb(228, 60, 58);
+			color: white;
+			border-radius: 5px;
+
+			/* background: #333; */
+			cursor: pointer;
+		}
+		/* 右侧内容 */
+		#right_content
+		{
+			height: 445px;
+			height: 100%;
+			overflow: auto;
+			padding-top: 15px;
+			background:#f2f2f2;
+			background: #f5f5d5;
+		}
+		/* 覆盖bootstrap样式 */
+		.btn-primary{
+			
+			background: rgb(81, 130, 242)!important;
+
+		}
+		
+		
+	</style>
+</head>
+<body>
+	<div id="container" style="min-width: 270px; height: 600px;padding: 20px 0;" class="container">
+		<!-- 头部店铺信息 -->
+		<div id="header" class="row container" >
+			<div class="col-md-12">
+				<div class="col-md-6">
+					<div style="float: left;display: block;">
+						<img src="../img/1.jpg" class="img-thumbnail">
+					</div>
+					<div class="shopname">麦克多</div>
+				</div>
+			</div>
+			<div class="col-md-12 shopmes">
+				<span>电话：1375451512</span>
+				<span>地址：绵阳市西科大新区体育场</span>
+				<span>学校：西南科技大学</span>
+			</div>
+		</div>
+		<!-- 左边侧边栏 -->
+		<div id="left_bar" class="col-md-2">
+			<ul class="nav nav-pills nav-stacked list-group">
+				<li role="presentation" class="text-center">
+					<div id="mh_goodmanger" class="menu_head">
+						商品管理
+					</div>
+					<div class="the_sencend_menu" id="good_list">
+						商品列表
+					</div>
+					<div class="the_sencend_menu" id="add_good">
+						增加商品
+					</div>
+				</li>
+				<li role="presentation" class="text-center">
+					<div class="menu_head" >
+						订单管理
+					</div>
+					<div class="the_sencend_menu text-center" id="order_manage">
+						订单汇总
+					</div>
+				</li>
+				<li role="presentation" class="active text-center">
+					<div class="menu_head">
+						店铺信息
+					</div>
+					<div class="the_sencend_menu" id="store_info">
+						修改信息
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!-- <div style="width: 20px;height: 1px;"></div> -->
+		<!-- 右边内容区 -->
+		<div id="right_content" class="col-md-10">
+			<h2>加载界面</h2>
+		</div>
+		<!-- <div class="col-md-1"></div> -->
+	</div>
+	
+</body>
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+
+
+<script type="text/javascript">
+	$(function(){
+		var con = $("#right_content");
+/*==============================================商品管理================================================*/
+		//商品列表加载
+		$("#good_list").click(function(){
+			con.load("goodsManger.html");
+		})
+		//增加商品页面
+		$("#add_good").click(function(){
+			con.load("addgood.html");
+		})
+/*==============================================订单管理================================================*/
+		$("#order_manage").click(function () {
+			con.load("order.html",function () {
+				$('#input-filter').keyup(function (e) {
+					let search_content=$(this).val();
+
+					if(e.which===13){
+						let order_items=ORDERS.filter(item=>{
+							return item.tel==search_content||item.id==search_content;
+						});
+						$('#order-filter').siblings('.order-item').remove();
+						renderOrderData(order_items);
+					}
+				})
+			});
+		})
+
+/*==============================================修改店铺信息================================================*/
+		$('#store_info').click(function () {
+			con.load('store_info.html');
+		})
+
+
+/*==============================================布局及特效==============================================*/		
+		//二级菜单效果
+		$("#left_bar ul li .menu_head").click(function(){
+			
+			if (!$(this).hasClass("hidden_head"))
+			{
+				$(this).siblings("div").slideDown();
+				$(this).addClass("hidden_head");
+			}
+			else
+			{
+				$(this).siblings("div").slideUp();
+				$(this).removeClass("hidden_head");
+			}
+		})	
+	})
+	
+</script>
+</html>

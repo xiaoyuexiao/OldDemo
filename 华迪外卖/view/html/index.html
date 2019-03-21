@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>主界面</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+
+	<style type="text/css">
+		html,body
+		{
+			margin: 0;
+			padding: 0;
+		}
+		
+		/* 总容器 */
+		#container{
+			/*background: #fafafa;
+			border: 20px solid #fafafa;*/
+		}
+		body{
+			background: url("../img/background7.jpg");
+		}
+		.the_sencend_menu
+		{
+			display: none;
+		}
+		/* 头部 */
+		#header
+		{
+			height: 110px;
+			width: 100%;
+			padding-top: 10px;
+			/* background: rgba(228,60	,58,0.9); */
+			background: rgba(0, 0, 0,0.7);
+			color: white;
+			margin: 40px 0px;
+			margin-bottom: 20px;
+
+		}
+		#header div img
+		{
+			width: 70px;
+			height: 70px;
+		}
+		.shopname
+		{
+			line-height: 70px;
+			font-size: 25px;
+			margin-left: 90px;
+		}
+		.shopmes
+		{
+			height: 30px;
+			line-height: 30px;
+			margin-left: 20px;
+			float: left;
+		}
+		.shopmes span
+		{
+			display: block;
+			float: left;
+			margin-right: 25px;
+		}
+		.shopmes_lable
+		{
+			margin-right:0px !important;
+		}
+		/* 左侧内容 */
+		#left_bar{
+			/* background: rgba(81, 130, 242,0.9); */
+			background: #333;
+			opacity: 0.9;
+			border-right: 10px solid #fafafa;
+			height: 100%;
+		}
+		#left_bar ul li
+		{
+			margin-top: 10px;
+		}
+		/* ul下面的li */
+		.the_sencend_menu
+		{
+			margin: 0px auto;
+			margin-top: 10px;
+			height: 20px;
+			line-height: 20px;
+			text-align: center;
+			width: 51%;
+			background: rgb(223,240,216);
+			background: rgba(228,60	,58,0.8);
+			color: #fff;
+			border-radius: 4px;
+			font-size: 14px;
+			cursor: pointer;
+		}
+		/* 商品管理 订单管理 店铺信息按钮 */
+		.menu_head
+		{
+			width: 60%;
+			height: 30px;
+			line-height: 30px;
+			margin: 0 auto;
+			margin-top: 20px;
+			background: #ccc;
+			background: rgb(228, 60, 58);
+			color: white;
+			border-radius: 5px;
+
+			/* background: #333; */
+			cursor: pointer;
+		}
+		/* 右侧内容 */
+		#right_content
+		{
+			height: 445px;
+			height: 100%;
+			overflow: auto;
+			padding-top: 15px;
+			background:#f2f2f2;
+			background: #f5f5d5;
+		}
+		/* 覆盖bootstrap样式 */
+		.btn-primary{
+			
+			background: rgb(81, 130, 242)!important;
+
+		}
+		nav li
+		{
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div id="container" style="min-width: 270px; height: 450px;" class="container">
+		<!-- 头部店铺信息 -->
+		<div id="header" class="row container" >
+			<div class="col-md-12">
+				<div class="col-md-6">
+					<div style="float: left;display: block;">
+						<img id="shop_img" src="../img/1.jpg" class="img-thumbnail">
+					</div>
+					<div class="shopname"></div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="col-md-8"></div>
+					<div class="col-md-4">
+						<span id="change_status" style="display: block;float: right;font-size: 20px;margin-right: 15px" class="glyphicon glyphicon-log-in"></span>
+						
+						<div id="shop_status" style="float: right;display: block;font-size: 20px;margin-right: 15px">营业中</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 shopmes">
+				<span class="shopmes_lable">电话:</span><span id="shopphone"></span>
+				<span class="shopmes_lable">地址:</span><span id="shop_detail_address"></span>
+				<span class="shopmes_lable">学校:</span><span id="shop_school"></span>
+			</div>
+		</div>
+		<!-- 左边侧边栏 -->
+		<div id="left_bar" class="col-md-2">
+			<ul class="nav nav-pills nav-stacked list-group">
+				<li role="presentation" class="text-center">
+					<div id="homepage" class="menu_head">
+						首页
+					</div>
+				</li>
+				<li role="presentation" class="text-center">
+					<div id="mh_goodmanger" class="menu_head">
+						商品管理
+					</div>
+					<div class="the_sencend_menu" id="good_list">
+						商品列表
+					</div>
+					<div class="the_sencend_menu" id="add_good">
+						增加商品
+					</div>
+				</li>
+				<li role="presentation" class="text-center">
+					<div class="menu_head" >
+						订单管理
+					</div>
+					<div class="the_sencend_menu text-center" id="order_manage">
+						订单汇总
+					</div>
+				</li>
+				<li role="presentation" class="active text-center">
+					<div class="menu_head">
+						店铺信息
+					</div>
+					<div class="the_sencend_menu" id="store_info">
+						修改信息
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!-- <div style="width: 20px;height: 1px;"></div> -->
+		<!-- 右边内容区 -->
+		<div id="right_content" class="col-md-10">
+			<h2>加载界面</h2>
+		</div>
+		<!-- <div class="col-md-1"></div> -->
+	</div>
+	
+</body>
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+
+
+<script type="text/javascript">
+	function goodsList(){
+			$("#right_content").empty().load("goodsManger.html?t="+new Date().getTime());
+		}
+		function addgood(){
+			$("#right_content").empty().load("addgood.html?t="+new Date().getTime());
+		}
+	$(function(){
+/*==============================================页面加载================================================*/	
+		$.ajax({
+			url:"../../ownerLogin/getShopMesByPhone",
+			success:function(data)
+			{
+				var data_ = JSON.parse(data);
+				var mes = data_.info[0];
+
+				var shopname = mes.shopname;
+				var shopaddress = mes.shopaddress;
+				var shopphone = mes.shopphone;
+				var shophousepicurl = mes.shophousepicurl;
+				var school = mes.schoolName;
+				$(".shopname").html(shopname);
+				$("#shopphone").html(shopphone);
+				$("#shop_detail_address").html(shopaddress);
+				$("#shop_school").html(school);
+				$("#shop_img").attr("src","../img/"+shophousepicurl);
+			},
+			error:function(status)
+			{
+				alert("网络问题，登录失败！！");
+			}
+		})
+		var con = $("#right_content");
+		con.load("initialPage.html",function(){
+			getnewOrders();
+		});
+		$("#homepage").click(function(){
+			con.load("initialPage.html",function(){
+				getnewOrders();
+			});
+		})
+/*==============================================商品管理================================================*/
+		$("#right_content").on('click', '.add_good',addgood);
+		//商品列表加载
+		$("#good_list").click(function(){
+			con.empty().load("goodsManger.html?t="+new Date().getTime());
+		});
+		//增加商品页面
+		$("#add_good").click(function(){
+			con.empty().load("addgood.html?t="+new Date().getTime());
+		})
+/*==============================================订单管理================================================*/
+		$("#order_manage").click(function () {
+			con.load("order.html",function () {
+				$('#input-filter').keyup(function (e) {
+					let search_content=$(this).val();
+
+					if(e.which===13){
+						let order_items=ORDERS.filter(item=>{
+							return item.tel==search_content||item.id==search_content;
+						});
+						$('#order-filter').siblings('.order-item').remove();
+						renderOrderData(order_items);
+					}
+				})
+			});
+		})
+
+/*==============================================修改店铺信息================================================*/
+		$('#store_info').click(function () {
+			con.load('updateShopMes.html');
+		})
+
+
+/*==============================================布局及特效==============================================*/		
+		//二级菜单效果
+		$("#left_bar ul li .menu_head").click(function(){
+			
+			if (!$(this).hasClass("hidden_head"))
+			{
+				$(this).siblings("div").slideDown();
+				$(this).addClass("hidden_head");
+			}
+			else
+			{
+				$(this).siblings("div").slideUp();
+				$(this).removeClass("hidden_head");
+			}
+		})
+
+		$("#change_status").click(function(){
+
+			var sta = $("#shop_status").text();
+			var shop_status_num = "";
+			if (sta == "休息中")
+			{
+				var a = confirm("确认转为营业状态？")
+				if (a==1)
+				{
+					shop_status_num = "1";
+				}
+			}
+			else
+			{
+				var a = confirm("确认打烊？")
+
+				if (a==1)
+				{
+					shop_status_num = "0";
+				}
+			}
+
+
+			if (shop_status_num != "")
+			{
+				$.ajax({
+					url:"../../ownerLogin/updateShopStatus",
+					data:{
+						status:shop_status_num
+					},
+					dataType:"json",
+					success:function(data)
+					{
+						if (shop_status_num == "0" && data.status =="1")
+						{
+							$("#shop_status").text("休息中");
+						}
+
+						if (shop_status_num == "1" && data.status =="1")
+						{
+							$("#shop_status").text("营业中");
+						}
+					},
+					error:function(){
+						alert("网络问题，稍后再试！！")
+					}
+				})
+			}
+			
+		})	
+	})
+
+
+	function getnewOrders()
+	{
+		$.ajax({
+				url:"../../ownerLogin/getNewOrders",
+				success:function(data)
+				{
+					var data_ = JSON.parse(data);
+					var mes = data_.info.orderid;
+					console.log(data_);
+					var str = "";
+					for (var i = 0; i < data_.info.length; i++)
+					{	
+						var goods_str = "";
+						for (var j = 0; j < data_.info[i].goods.length; j++)
+						{
+							goods_str = goods_str + data_.info[i].goods[j].goodname + " x " + data_.info[i].goods[j].goodnum +"<br>";
+						}
+
+						str = str + '<tr><td>'+data_.info[i].orderid+'</td><td>'+goods_str+'</td><td>加辣</td><td>'+timestampToTime(data_.info[i].orderstarttime)+'</td><td>'+data_.info[i].detailaddress+'</td><td><div class="btn-group" role="group" aria-label="..."><button type="button" class="btn btn-default acceptorder">接单</button><button type="button" class="btn btn-default refuseorder">拒单</button></div></td></tr>';
+					}
+					$(".neworder_table").html("");
+					$(".neworder_table").append(str);
+					//添加接单拒单的未来事件
+					$(".acceptorder").on("click",function(){
+						var orderid = $(this).parent().parent().siblings().eq(0).text();
+					   $.ajax({
+					   		url:"../../ownerLogin/acceptOrder",
+					   		data:{
+					   			orderid:orderid
+					   		},
+					   		success:function(data)
+					   		{
+					   			var data_ = JSON.parse(data);
+					   			if ("1" == data_.status)
+					   			{
+					   				alert("接单成功！！！");
+					   			}
+					   			else
+					   			{
+					   				alert("网络问题，接单失败！！！");
+					   			}
+					   		},
+					   		error:function()
+					   		{
+					   			console.log("error");
+	 							alert("网络问题，稍后再试！！");
+					   		}
+					   })
+					});
+					$(".refuseorder").on("click",function(){
+						var orderid = $(this).parent().parent().siblings().eq(0).text();
+					   $.ajax({
+					   		url:"../../ownerLogin/refuseOrder",
+					   		data:{
+					   			orderid:orderid
+					   		},
+					   		success:function(data)
+					   		{
+					   			var data_ = JSON.parse(data);
+
+					   			if ("1" == data_.status)
+					   			{
+					   				alert("拒单成功！！！");
+					   			}
+					   			else
+					   			{
+					   				alert("网络问题，拒单失败！！！");
+					   			}
+					   		},
+					   		error:function()
+					   		{
+					   			console.log("error");
+	 							alert("网络问题，稍后再试！！");
+					   		}
+					   })
+					});
+					
+				},
+				complete:function(xhr)
+						{
+							console.log("complete");
+							var sessionstatus = xhr.getResponseHeader("SESSIONSTATUS");
+							if (sessionstatus == "TIMEOUT")
+							{
+								console.log(xhr.getResponseHeader("CONTEXTPATH"));
+								window.location.href= xhr.getResponseHeader("CONTEXTPATH");
+							}
+						},
+	 			error:function(){
+	 				console.log("error");
+	 				alert("网络问题，稍后再试！！");
+	 			}
+			})
+	}
+
+
+	function getnewEvaluate()
+	{
+		$.ajax({
+				url:"../../ownerLogin/getNewEvaluate",
+				success:function(data)
+				{
+					var data_ = JSON.parse(data);
+					var mes = data_.info.orderid;
+					console.log(data_);
+					console.log(mes);
+					var str = "";
+					for (var i = 0; i < data_.info.length; i++)
+					{
+						var goods_str = "";
+						for (var j = 0; j < data_.info[i].goods.length; j++)
+						{
+							goods_str = goods_str + data_.info[i].goods[j].goodname + " x " + data_.info[i].goods[j].goodnum +"<br>";
+						}
+						str = str + '<tr><td>'+data_.info[i].orderid+'</td><td>'+goods_str+'</td><td>'+timestampToTime(data_.info[i].evaluatetime)+'</td><td><div class="btn-group" role="group" aria-label="..."><button type="button" class="btn btn-default">回复评价</button></div></td></tr>';
+					}
+					$(".new_evalidate_table").html("");
+					$(".new_evalidate_table").append(str);
+					//添加接单拒单的未来事件
+				},
+				complete:function(xhr)
+						{
+							console.log("complete");
+							var sessionstatus = xhr.getResponseHeader("SESSIONSTATUS");
+							if (sessionstatus == "TIMEOUT")
+							{
+								console.log(xhr.getResponseHeader("CONTEXTPATH"));
+								window.location.href= xhr.getResponseHeader("CONTEXTPATH");
+							}
+						},
+	 			error:function(){
+	 				console.log("error");
+	 				alert("网络问题，稍后再试！！");
+	 			}
+			})
+	}
+
+	//getNewOrders
+	function getTodayOrders()
+	{
+		$.ajax({
+				url:"../../ownerLogin/getTodayOrders",
+				success:function(data)
+				{
+					var data_ = JSON.parse(data);
+					var str = "";
+
+					for (var i = 0; i < data_.info.length; i++)
+					{
+						var goods_str = "";
+						for (var j = 0; j < data_.info[i].goods.length; j++)
+						{
+							goods_str = goods_str + data_.info[i].goods[j].goodname + " x " + data_.info[i].goods[j].goodnum +"<br>";
+						}
+						//订单状态
+						var order_status_num = data_.info[i].orderstatus;
+						var order_status_str = "";
+
+						switch(order_status_num)
+						{
+							case "0":
+								order_status_str = "未完成单";
+								break;
+							case "1":
+								order_status_str = "已经完成单";
+								break;
+							case "2":
+								order_status_str = "未处理单";
+								break;
+							case "3":
+								order_status_str = "已接单";
+								break;
+							case "4":
+								order_status_str = "已拒单";
+								break;
+						}
+
+						str = str + '<tr><td>1563512531</td><td>'+goods_str+'</td><td>加辣</td><td>'+ timestampToTime(data_.info[i].orderstarttime)+'</td><td>'+data_.info[i].detailaddress+'</td><td>'+order_status_str+'</td></tr>';
+					}
+					$(".today_orders").html("");
+					$(".today_orders").html(str);
+				},
+				complete:function(xhr)
+						{
+							console.log("complete");
+							var sessionstatus = xhr.getResponseHeader("SESSIONSTATUS");
+							if (sessionstatus == "TIMEOUT")
+							{
+								console.log(xhr.getResponseHeader("CONTEXTPATH"));
+								window.location.href= xhr.getResponseHeader("CONTEXTPATH");
+							}
+						},
+	 			error:function(){
+	 				console.log("error");
+	 				alert("网络问题，稍后再试！！");
+	 			}
+			})
+	}
+
+	function timestampToTime(timestamp) {
+		    var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000,十位的是按秒算（unix时间戳），十三位的是按毫秒算
+		    Y = date.getFullYear() + '-';
+		    M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+		    D = date.getDate() + ' ';
+		    h = date.getHours() + ':';
+		    m = date.getMinutes() + ':';
+		    s = date.getSeconds();
+		    return Y+M+D+h+m+s;
+   	}
+</script>
+
+</html>

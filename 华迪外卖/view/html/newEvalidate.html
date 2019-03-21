@@ -1,0 +1,86 @@
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	  
+	    <div class="navbar-header">
+	      <a class="navbar-brand">首页</a>
+	    </div>
+	   
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <li class="neworder" ><a>新的订单</a></li>
+	        <li class="newevalute active"><a >新的评价</a></li>
+	        <li class="today_order"><a>今日订单</a></li>
+	      </ul>
+	    </div>
+
+	  </div>
+	</nav>
+	
+
+	<table class="table table-bordered ">
+	  	<thead>
+	  		<th>订单号</th>
+	  		<th>菜品</th>
+	  		<th>接单时间</th>
+	  		<th>操作</th>
+	  	</thead>
+	  	<tbody class="new_evalidate_table">
+	  		<!-- <tr>
+	  			<td>1563512531</td>
+	  			<td>黄焖鸡x1<br>粉丝汤<br></td>
+	  			<td>11:56</td>
+	  			<td>
+	  				<div class="btn-group" role="group" aria-label="...">
+	  				  <button type="button" class="btn btn-default">回复评价</button>
+	  				</div>
+	  			</td>
+	  		</tr>
+
+	  		<tr>
+	  			<td>1563512531</td>
+	  			<td>黄焖鸡x1<br>粉丝汤<br></td>
+	  			<td>11:56</td>
+	  			<td>
+	  				<div class="btn-group" role="group" aria-label="...">
+	  				  <button type="button" class="btn btn-default">回复评价</button>
+	  				</div>
+	  			</td>
+	  		</tr>
+
+	  		<tr>
+	  			<td>1563512531</td>
+	  			<td>黄焖鸡x1<br>粉丝汤<br></td>
+	  			<td>11:56</td>
+	  			<td>
+	  				<div class="btn-group" role="group" aria-label="...">
+	  				  <button type="button" class="btn btn-default">回复评价</button>
+	  				</div>
+	  			</td>
+	  		</tr> -->
+
+	  	</tbody>
+	</table>
+
+	<script type="text/javascript">
+		var con = $("#right_content");
+
+		$(".neworder").click(function(){
+			con.load("initialPage.html",function(){
+				getnewOrders();
+			});
+		})
+
+		$(".newevalute").click(function(){
+			con.load("newEvalidate.html",function(){
+				getnewEvaluate();
+			});
+		})
+
+		$(".today_order").click(function(){
+			con.load("todayorder.html",function(){
+				getTodayOrders();
+			});
+		})
+
+
+	</script>

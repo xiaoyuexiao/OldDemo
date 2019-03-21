@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>选择商家</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../../bootstrap/css/bootstrap.min.css">
+	<script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
+	<style type="text/css">
+		body
+		{
+			background: rgb(245,245,245);
+		}
+		.cs_header
+		{
+			background: rgb(51,51,51);
+
+			height: 32px;
+			color: #fff;
+		}
+		.good_user
+		{
+			margin: 0;
+			padding: 0;
+		}
+		.school
+		{
+			line-height: 32px;
+		}
+		.good_user button
+		{
+			border: none;
+			background: rgb(51,51,51);
+			height: 32px;
+		}
+		.good_user button:hover
+		{
+			color: #fff;
+		}
+		.cs_nav
+		{
+			height: 80px;
+			background: #fff;
+		}
+		.cs_goodtype
+		{
+			height:80px;
+			padding-top: 20px;
+			font-size: 20px;
+		}
+		.onchose
+		{
+			color: orange;
+		}
+		#cs_chose_type span
+		{
+			cursor: pointer;
+			padding: 0 5px;
+		}
+
+		.good_list
+		{
+			margin-top: 10px;
+			padding: 30px 0;
+			background: #fff;
+		}
+		/*一个店铺的css*/
+		.one_good
+		{
+			padding-bottom: 20px;
+		}
+		
+		.one_good img
+		{
+			height: 156px;
+			width: 100%;
+		}
+		.good_name
+		{
+			height: 22px;
+			margin-top: 10px;
+			font-size: 16px;
+			color: #313131;
+		}
+		.good_status
+		{
+			margin-top: 10px;
+			color: #348bed;
+		}
+		.good_min_price
+		{
+			padding: 0;
+			margin-top: 7px;
+		}
+		.good_fee
+		{
+			padding: 0;
+			margin-top: 7px;
+		}
+		.good_fee span
+		{
+			display: block;
+			float: right;
+		}
+		.good_message_all
+		{
+			padding-top:15px;
+			padding-bottom: 15px;
+		}
+		.good_message_all:hover
+		{
+			background: rgb(245,245,245);
+		}
+		img
+		{
+			width: 100%;
+		}
+		.shop_mes
+		{
+			padding-top: 20px;
+			padding-bottom: 20px;
+			margin-top: 10px;
+			background: #fff;
+		}
+		.shop_name
+		{
+			height: 43px;
+			line-height: 43px;
+			font-size: 18px;
+		}
+		.shop_mark
+		{
+			height: 43px;
+			line-height: 43px;
+		}
+		.min_price div
+		{
+			height: 43px;
+			line-height: 43px;
+		}
+		.min_price div span
+		{
+			font-size: 28px;
+			font-weight: bold;
+		}
+		.min_price div:first-child
+		{
+			font-size: 12px;
+		}
+		.shop_fee div
+		{
+			height: 43px;
+			line-height: 43px;
+		}
+		.shop_fee div span
+		{
+			font-size: 28px;
+			font-weight: bold;
+		}
+		.shop_fee div:first-child
+		{
+			font-size: 12px;
+		}
+		.shopcar_footer
+		{
+			height: 200px;
+			float: right;
+			position: fixed;
+			bottom: 45px;
+			right: 0;
+			background: #fff;
+			z-index: 10000;
+		}
+		
+		.shopcar_footer div.shopcar:hover
+		{
+			background: rgb(245,245,245);
+		}
+		.shopcar_footer div.to_pay:hover
+		{
+			background: rgb(245,245,245);
+		}
+		.all_money
+		{
+			height: 93px;
+			line-height: 93px;
+			text-align: left;
+		}
+		.address_content
+		{
+			border-bottom:1px solid #ccc;
+			margin-bottom: 10px;
+		}
+		.address_content div
+		{
+			margin-bottom: 10px;
+			margin-left: 10px;
+			margin-right: 10px;
+			padding-bottom: 5px; 
+		}
+		.hidden
+		{
+			display: none;
+		}
+		.reduce_good
+		{
+			margin-left: 15px;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<!-- 用户信息 -->
+		<div class="col-md-12 cs_header">
+			<div class="col-md-1"></div>
+			<div class="col-md-3 school">学校：  <span id="schoolname"></span></div>
+
+			<div class="col-md-7 good_user">
+			  <div class="col-md-12">
+			  	<div class="input-group">
+			      <div class="input-group-btn">
+			        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">账号：<span id="phone"></span> <span class="caret"></span></button>
+			        <ul class="dropdown-menu">
+			         	<li id="myorders"><a>我的订单</a></li>
+ 				   		 <li id="quite"><a>退出</a></li>
+			        </ul>
+			      </div><!-- /btn-group -->
+			    </div>
+			  </div><!-- /.col-lg-6 -->
+			</div><!-- /.row -->
+
+			<div class="col-md-1"></div>
+		</div>
+		
+		<!-- 店铺信息 -->
+		<div class="col-md-12">
+			<div class="col-md-1"></div>
+			<div class="col-md-10 shop_mes">
+				<div class="col-md-6">
+					<div class="col-md-4 shop_img">
+						<img id="shop_img" src="">
+					</div>
+					<div class="col-md-8">
+						<div class="col-md-12 shop_name"></div>
+						<div class="col-md-12 shop_mark">评分：4.2</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="col-md-4 min_price">
+						<div class="col-md-12">起送</div>
+						<div class="col-md-12"><span></span>元</div>
+					</div>
+					<div class="col-md-4 shop_fee">
+						<div class="col-md-12">配送费</div>
+						<div class="col-md-12"><span></span>元</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+
+		
+		<!-- 商品分类 -->
+		<div class="col-md-12 cs_nav">
+			<div class="col-md-1"></div>
+			<div class="col-md-10 cs_goodtype">
+				<div class="col-md-2">
+					<span class="glyphicon glyphicon-glass"></span> &nbsp;美食分类
+				</div>
+				<div class="col-md-6" id="cs_chose_type">
+					<span class="onchose"> 全部</span>
+					<span> 主食</span>
+					<span> 下午茶</span>
+					<span> 饮品</span>
+				</div>
+				<div class="col-md-4">
+					<div class="col-md-12 good_search">
+					    <div class="input-group">
+					      <input type="text" class="form-control" placeholder="Search for...">
+					      <span class="input-group-btn">
+					        <button class="btn btn-default" type="button">Go!</button>
+					      </span>
+					    </div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+
+
+		
+		<div class="col-md-12">
+			<div class="col-md-1"></div>
+			<div class="col-md-10 good_list">
+				<!-- 动态加载以下模板的商品 -->
+				<!-- <div class="col-md-4 one_good">
+					<div class="col-md-12 good_message_all">
+						<div class="col-md-12"><img src="../../img/1.jpg"></div>
+						<div class="col-md-12 good_name good_message">香辣炸鸡腿</div>
+						<div class="col-md-12">
+							<div class="col-md-6 good_min_price good_message">¥10元 </div>
+							<div class="col-md-6 good_fee good_message"><span class="glyphicon glyphicon-plus-sign add_good"></span></div>
+						</div>
+						<input type="hidden" name="" value="goodid">
+					</div>
+				</div> -->
+				
+
+			</div>
+			<div class="col-md-1">
+				
+			</div>
+		</div>
+	<!-- 尾部 -->
+		<div class="col-md-1 shopcar_footer">
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+			  去结算
+			</button>
+
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">购物车</h4>
+			      </div>
+			      <div class="modal-body">
+			      	<div class="row address_content">
+	      		      	<div class="input-group">
+	      				  <span class="input-group-addon" id="clear_address">详细地址:</span>
+	      				  <input id="clear_address_content" type="text" class="form-control" placeholder="请输入详细收货地址" aria-describedby="clear_address">
+	      				</div>
+			      	</div>
+      		      	<div id="order_good_list">
+  				        <!-- <div class="row" good_token = "456">
+  		            		<div class="col-md-3">煎蛋*<span class="good_num">2</span></div>
+  		            		<div class="col-md-2">¥<span class="one_good_price">10</span></div>
+  		            		<div class="col-md-7">
+  		            			<span class="glyphicon glyphicon-plus add_good_num"></span>
+  		            			<span class="glyphicon glyphicon-minus reduce_good"></span>
+  		            		</div>
+  		            	</div> -->
+  		            	
+      		      	</div>
+			        
+					<div class="row" style="margin-top: 10px;">
+						<button type="button" class="btn btn-default" data-dismiss="modal" style="float: right;margin-right: 10px;">关闭</button>
+						<button id="pay_money" type="button" class="btn btn-default" style="float: right;margin-right: 10px;">结算</button>
+						<span style="float: right;margin-right: 20px;margin-top: 5px;">总金额：<span class="all_money_num">0</span>元</span>
+					</div>
+
+			      </div>
+			      <div class="modal-footer hidden" id="pay_code">
+			      	<div class="col-md-12">
+			      		<div class="col-md-3">
+			      			扫码支付：
+			      		</div>
+			      		<div class="col-md-4">
+			      			<img src="../../img/lee.png" title="扫码支付" alt="商家收钱二维码">
+			      		</div>
+			      		<div class="col-md-5 all_money">
+			      			总金额：<span class="all_money_num">0</span>元
+			      			<button id="pay_money_last" type="button" class="btn btn-default" style="float: right;margin-top:30px">确认支付</button>
+			      		</div>
+			      	</div>
+					
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	$(function(){
+
+
+		/*==================================数据交互开始=====================================*/
+		//取出token值
+		console.log(window.location.href);
+        let url= window.location.href;
+        let info = url.split('=');
+        let shopphone = info[1].substring(0,info[1].indexOf("&"));//店铺电话
+        let schoolname = info[2].substring(0,info[2].indexOf("&"));//学校名称
+        let userphone = info[3];//用户电话
+        var shop_status = "";
+        //设置页面上的值
+        $("#schoolname").html(decodeURI(schoolname));
+        $("#phone").html(userphone);
+
+        //查看我的订单
+     	$("#myorders").click(function(){
+     		var phone =  userphone;
+     		window.location.href=`./myOrders.html?user_phone=${phone}&schoolname=${schoolname}`;
+     	})
+     	//退出登录
+     	$("#quite").click(function(){
+     		$.ajax({
+     			url:"../../../userQuite",
+     			type:"post",
+     			data:{
+     				user_phone:userphone
+     			},
+     			success:function(data){
+     				var data_ = JSON.parse(data);
+     				if (data_.info == "1")
+     				{
+     					window.location.href=`../login.html`;
+     				}
+     				else
+     				{
+     					alert("退出失败，网络问题！");
+     				}
+     			},
+     			error:function(){
+     				alert("网络问题，稍后再试！！");
+     			}
+     		})
+     		
+     	})
+
+
+        $.ajax({
+				url:"../../../queryShopMesByPhone",
+				type:"post",
+				data:{
+					shop_phone:shopphone
+				},
+				success:function(data)
+				{
+					var data_ = JSON.parse(data);
+					var shop_mes = data_.shopmes;//基本信息
+					var shopgoods = data_.shopgoods;//店铺商品信息
+					//取出基本信息
+					var shopname = shop_mes.shopname;
+					var shophousepicurl = shop_mes.shophousepicurl;
+					var shopfee = shop_mes.shopfee;
+					var shopstartprice = shop_mes.shopstartprice;
+					var shoptype = shop_mes.shoptype;
+						shop_status = shop_mes.shopstatus;
+					$(".shop_name").text(shopname);
+					$(".min_price div span").eq(0).text(shopstartprice);
+					$(".shop_fee div span").eq(0).text(shopfee);
+					$("#shop_img").attr("src","../../img/" + shophousepicurl);
+					//取出商品信息
+					var goodid = "";
+					var goodname = "";
+					var goodimage = "";
+					var goodprice = "";
+					var goodtype = "";
+					for (var i = 0; i < shopgoods.length; i++)
+					{
+						 goodid = shopgoods[i].goodid;
+						 goodname = shopgoods[i].goodname;
+						 goodimage = shopgoods[i].goodimage;
+						 goodprice = shopgoods[i].goodprice;
+						 goodtype = shopgoods[i].goodtype;
+						var goodstr = '<div class="col-md-4 one_good" good_type="'+goodtype+'"><div class="col-md-12 good_message_all"><div class="col-md-12"><img src="../../img/'+goodimage+'"></div><div class="col-md-12 good_name good_message">'+goodname+'</div><div class="col-md-12"><div class="col-md-6 good_min_price good_message">¥'+goodprice+'元 </div><div class="col-md-6 good_fee good_message"><span class="glyphicon glyphicon-plus-sign add_good"></span></div></div><input type="hidden" name="" value="'+goodid+'"></div></div>'; 
+
+						$(".good_list").eq(0).append(goodstr);
+
+						$(".one_good input").each(function(){
+							if($(this).val() == goodid)
+							{
+								$(this).siblings("div").eq(2).find("span").eq(0).on("click",function(){
+									var obj = $(this);
+									if (shop_status == 0)
+									{
+										alert("商家休息中，不能点餐！");
+									}
+									else
+									{
+										addGood(obj);
+									}
+									
+								});
+							}
+						})
+
+					}
+					
+				},
+				error:function(status)
+				{
+					alert("网络问题，请稍后再试！！");
+				}
+        })
+        //支付生成订单
+        $("#pay_money_last").click(function(){
+        	var oreder_good = $("#order_good_list .row");
+        	var good_str = "";
+
+        	var clear_address = $("#clear_address_content").val();
+        	var allmoney = $(".all_money_num").eq(1).text();
+
+        	oreder_good.each(function(){
+        		var good_token = $(this).attr("good_token");
+        		var good_num = $(this).find(".good_num").eq(0).text();
+        		good_str = good_str + good_token + "," + good_num + ";";
+        	})
+
+        	$.ajax({
+        		url:"../../../addOrder",
+				type:"post",
+				data:{
+					clear_address:clear_address,
+					allmoney:allmoney,
+					userphone:userphone,
+					shopphone:shopphone,
+					good_str:good_str
+				},
+				success:function(data)
+				{
+					var data_ = JSON.parse(data);
+					if (data_.status == 1) 
+					{
+						alert("下单成功！！");
+					}
+				},
+				error:function()
+				{
+					alert("网络问题，请稍后再试！！");
+				}
+        	})
+
+
+        })
+		/*==================================数据交互结束=====================================*/
+
+
+
+		//导航下拉菜单处理
+		$(".good_user ul li").hover(function(){
+			$(".good_user button").css("color","white");
+		})
+		//商家分类处理
+		$("#cs_chose_type span").click(function(){
+			$(this).addClass("onchose").siblings().removeClass("onchose");
+
+			var index = $(this).index();
+			if (index == 0)
+			{
+				$(".good_list .one_good").each(function(){
+					$(this).removeClass("hidden");
+				})
+			}
+			else
+			{
+				$(".good_list .one_good").each(function(){
+					if($(this).attr("good_type") != index)
+					{
+						$(this).addClass("hidden");
+					}
+					else
+					{
+						$(this).removeClass("hidden");
+					}
+					
+				})
+			}
+		})
+		//结算
+		$("#pay_money").click(function(){
+			//检查详细地址是否为空
+			var address = $("#clear_address_content").val();
+			if (address.length == 0)
+			{
+				alert("请填入收货地址后结算！！！");
+			}
+			else
+			{
+				$("#pay_code").removeClass("hidden");
+			}
+		})
+			//监听地址栏是否为空
+		$("#clear_address_content").change(function(){
+			if ($(this).val().length == 0) 
+			{
+				$("#pay_code").addClass("hidden");
+			}
+		})
+
+        //添加商品
+        $(".add_good").click(function(){
+        	if (shop_status == 0)
+        	{
+        		alert("商家休息中，不能点餐！");
+        	}
+        	else
+        	{
+        		addGood($(this));
+        	}
+        })
+	})
+	//页面上更新订单的总金额
+	function resetAllmoney()
+	{
+		var order_div = $("#order_good_list .row");
+		var all_price = 0;
+		for (var i = 0; i < order_div.length; i++) 
+		{
+			var order_div_detail = order_div.eq(i).find("span");
+			var num = order_div_detail.eq(0).text();
+			var price_str = order_div_detail.eq(1).text();
+			var price = price_str.substr(1,price_str.indexOf("元")-1);
+			all_price = all_price + (num * price);
+		}
+		$(".all_money_num").html(all_price);
+	}
+
+
+	function addGood(obj)
+	{
+		var price = obj.parent().siblings().eq(0).html();
+		var name = obj.parent().parent().siblings().eq(1).html();
+		var token = obj.parent().parent().siblings("input").eq(0).val();
+		//console.log(token);
+		var good_list = $("#order_good_list div");
+		var flag = true;
+		//遍历购物车里面的商品，判断是否存在
+		for (var i = 0; i < good_list.length; i++)
+		{
+			var one_good = good_list.eq(i);
+			//如果添加的商品已经存在，在原来的数量上面加一即可
+			if (one_good.attr("good_token") == token)
+			{
+				//数量原来基础上加一
+				var now_num_span = one_good.children().eq(0).children("span.good_num").eq(0);
+				var old_num = now_num_span.text();
+				var now_num = parseInt(old_num)+ 1;
+				now_num_span.html(now_num);
+				flag = false;
+				alert("成功添加一份");
+				break;
+			}
+		}
+		//如果不存在，添加新的一个商品
+		if (flag == true) 
+		{
+			var good = '<div class="row" good_token = '+token+'><div class="col-md-3">'+name+'*<span class="good_num">1</span></div><div class="col-md-2"><span class="one_good_price">'+price+'</span>每份</div><div class="col-md-7"><span class="glyphicon glyphicon-plus add_good_num"></span><span class="glyphicon glyphicon-minus reduce_good"></span></div></div>';
+			$("#order_good_list").append(good);
+			alert("添加成功！！！");
+			//未来元素绑定点击事件，加商品数量
+			var rows = $("#order_good_list .row");
+			rows.each(function(){
+				if ($(this).attr("good_token") == token) 
+				{
+					//找到当前要添加事件的添加，被坑了近一个小时。。。。。。。。
+					$(this).find(".add_good_num").eq(0).on("click",function(){
+						var num_span = $(this).parent().siblings().eq(0).children("span.good_num").eq(0);
+						var old_num = num_span.text();
+						var new_num = parseInt(old_num) + 1;
+						num_span.text(new_num);
+						resetAllmoney();
+					})
+					//未来元素绑定点击事件，减商品数量
+					$(this).find(".reduce_good").eq(0).on("click",function(){
+						var num_span = $(this).parent().siblings().eq(0).children("span.good_num").eq(0);
+						var old_num = num_span.text();
+						var new_num = parseInt(old_num) - 1;
+						if (new_num < 0)
+						{
+							new_num = 0;
+						}
+						num_span.text(new_num);
+						resetAllmoney();
+					})
+				}
+			})
+		}
+		//总金额计算
+		resetAllmoney();
+	}
+</script>
+</html>

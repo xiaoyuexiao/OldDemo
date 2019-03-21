@@ -1,0 +1,321 @@
+
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+	<style type="text/css">
+		div
+		{
+			padding: 0;
+		}
+		.menu_name
+		{
+			line-height: 34px;
+			font-size: 18px;
+		}
+		.new_add
+		{
+			height: 30px;
+			line-height: 30px;
+		}
+		.good_search
+		{
+			float: right;
+		}
+		.writebtn
+		{
+			margin-bottom: 10px;
+		}
+		.good_mes div
+		{
+			margin-top: 10px;
+		}
+		.fade
+		{
+			background: rgba(0,0,0,0.3)!important;
+		}
+		.modal_btn
+		{
+			margin-top: 5px;
+		}
+	</style>
+
+	<div id="content">
+
+
+		<div class="col-md-12 goodlist">
+
+			<div class="col-md-12">
+				<div class="col-md-5 menu_name">商品管理</div>
+				<div class="col-md-7">
+					<div class="col-md-6 good_search">
+					    <div class="input-group">
+					      <input type="text" class="form-control" placeholder="Search for...">
+					      <span class="input-group-btn">
+					        <button class="btn btn-default" type="button">Go!</button>
+					      </span>
+					    </div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-md-12 new_add">
+				<div class="col-md-1"></div>
+				<div class="col-md-11 add_good">+新增</div>
+			</div>
+<!-- 一项商品开始 -->
+			<!-- <div class="col-md-12">
+				<div class="col-md-2">
+					<img style="width: 100%;height: 84px;" src="../img/2.jpg">	
+				</div>
+				<div class="col-md-8">
+					<ul class="list-group">
+					  <li class="list-group-item">名称：麻辣香水鱼</li>
+					  <li class="list-group-item">价格：<span>15</span>¥&nbsp;&nbsp;&nbsp;&nbsp;类型：<span></span> </li>
+					</ul>
+				</div>
+				<div class="col-md-2">
+					<button type="button" class="btn btn-primary modal_btn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">编辑</button>
+					<button type="button" class="btn btn-primary modal_btn down_good">下架</button>
+					<button type="button" class="btn btn-primary modal_btn">客户评价</button>
+					<input type="hidden" value="">
+				</div>
+			</div> -->
+<!-- 一项商品结束 -->
+
+
+
+<!--修改弹出的模态框开始-->
+			<div class="modal fade modal_background" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+			  <div class="modal-dialog " role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="exampleModalLabel1">商品编辑</h4>
+			      </div>
+
+			    <form id="form" method="post" enctype="multipart/form-data">
+
+			      <div class="modal-body good_mes">
+
+    					<div class="row">
+    					  <div class="col-md-12">
+    					    <div class="input-group">
+    					      <div class="input-group-btn">
+    					        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">商品分类： <span class="caret"></span></button>
+    					        <ul class="dropdown-menu good_type">
+    					         	<li><a>主食</a></li>
+    	         				    <li><a>下午茶</a></li>
+    	         				    <li><a>饮品</a></li>
+    					        </ul>
+    					      </div>
+    					      <input type="text" id="type_input" class="form-control dropdown_menu_input goodtypecontent" name="goodtype" placeholder="请选择分类" aria-label="...">
+    					    </div>
+    					  </div>
+    					</div>
+    					
+
+    					<div class="input-group">
+    					
+    					  	<input id="lefile" type="file" name="file" style="display:none"> 
+    					    <span class="input-group-addon" id="basic-addon1">商品图片：</span>
+    					    <input type="text" id="photoCover"  class="form-control"  placeholder="请选择图片" aria-describedby="basic-addon2">
+    					    <span class="input-group-addon" onclick="$('input[id=lefile]').click();">请选择图片</span> 
+    					    
+    					</div>
+
+    					<div class="input-group">
+    					  <span class="input-group-addon" id="sizing-addon2">商品名称：</span>
+    					  <input type="text" class="form-control goodname_input" name="goodname" placeholder="请输入名称" aria-describedby="sizing-addon2">
+    					</div>
+    					
+
+    					<div class="input-group">
+    					  <span class="input-group-addon" id="sizing-addon2">商品价格：</span>
+    					  <input type="text" class="form-control goodprice_input" name="goodprice" placeholder="请输入名称" aria-describedby="sizing-addon2">
+    					</div>
+
+    					<div class="input-group">
+    					  <input type="hidden" id="modal_goodid" class="form-control" name="goodid" placeholder="" aria-describedby="sizing-addon2">
+    					</div>
+			      </div>
+			    </form>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+			        <button type="button" class="btn btn-primary commit_new_good">提交</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+<!--修改弹出的模态框结束-->
+
+
+		</div>
+
+	</div>
+
+
+<script type="text/javascript">
+		$(function(){
+			//var con = $("#right_content");
+			// $(".updategood").click(function(){
+			// 	con.load("updategood.html",);
+			// })
+
+			$(".good_type li").click(function(){
+				var type = $(this).text();
+				$("#type_input").val(type);
+			})
+
+			$('input[id=lefile]').change(function()
+			{ 
+				$('#photoCover').val($(this).val()); 
+			});
+
+			//查询商品
+			$.ajax({
+				url:"../../ownerLogin/queryAllGoods",
+				success:function(data)
+				{
+					var data_ = JSON.parse(data);
+					var goodlist_str = "";
+
+					var goodname = "";
+					var goodid = "";
+					var goodimage = "";
+					var goodprice = "";
+					var goodtype = "";
+					var shopphone = "";
+					for (var i = 0; i < data_.info.length; i++)
+					{
+						goodname = data_.info[i].goodname;
+						goodid = data_.info[i].goodid;
+						goodimage = data_.info[i].goodimage;
+						goodprice = data_.info[i].goodprice;
+						goodtype = data_.info[i].goodtype;
+
+						var type_real = "";
+						if (goodtype == "0") 
+						{
+							type_real = "主食";
+						}
+						if (goodtype == "1") 
+						{
+							type_real = "下午茶";
+						}
+						if (goodtype == "2") 
+						{
+							type_real = "饮品";
+						}
+
+						goodlist_str = goodlist_str + '<div class="col-md-12"><div class="col-md-2"><img style="width: 100%;height: 84px;" src="../img/'+goodimage+'"></div><div class="col-md-8"><ul class="list-group"><li class="list-group-item">名称：<span>'+goodname+'</span></li><li class="list-group-item">价格：<span>'+goodprice+'</span>&nbsp;&nbsp;&nbsp;&nbsp;类型：<span>'+type_real+'</span></li></ul></div><div class="col-md-2"><button type="button" class="btn btn-primary modal_btn updategoodmes" data-toggle="modal" data-target="#exampleModal" >编辑</button>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary modal_btn down_good">下架</button><input type="hidden" name="goodid"  value="'+goodid+'"></div></div>';
+					}
+					$(".goodlist").append(goodlist_str);
+					$(".updategoodmes").on("click",function(){
+						goodname = $(this).parent().siblings().eq(1).find("li").eq(0).find("span").eq(0).text();
+						goodprice = $(this).parent().siblings().eq(1).find("li").eq(1).find("span").eq(0).text();
+						goodtype = $(this).parent().siblings().eq(1).find("li").eq(1).find("span").eq(1).text();
+						goodid = $(this).siblings("input").eq(0).val();
+						$(".goodname_input").val(goodname);
+						$(".goodprice_input").val(goodprice);
+						$(".good_type").val(goodtype);
+						$("#modal_goodid").val(goodid);
+					})
+					//下架
+					$(".down_good").on("click",function(){
+						var goodid = $(this).siblings("input").eq(0).val();
+						$.ajax({
+							url:"../../ownerLogin/downGoodById",
+							data:{
+								goodid:goodid
+							},
+							dataType:"json",
+							type:"POST",
+							success:function(data)
+							{
+								if (data.status == 1)
+								{
+									alert("下架成功！！");
+								}
+								if (data.status == 2)
+								{
+									alert("下架失败！");
+								}
+							},
+							error:function(xhr)
+							{
+								alert("error");
+							},
+							complete:function(xhr)
+							{
+								console.log("complete");
+								var sessionstatus = xhr.getResponseHeader("SESSIONSTATUS");
+								if (sessionstatus == "TIMEOUT")
+								{
+									console.log(xhr.getResponseHeader("CONTEXTPATH"));
+									window.location.href= xhr.getResponseHeader("CONTEXTPATH");
+								}
+
+								con.load("goodsManger.html");
+
+							}
+						})
+					})
+
+				},
+				error:function(xhr)
+				{
+					alert("error");
+				},
+				complete:function(xhr)
+				{
+					console.log("complete");
+					var sessionstatus = xhr.getResponseHeader("SESSIONSTATUS");
+					if (sessionstatus == "TIMEOUT")
+					{
+						console.log(xhr.getResponseHeader("CONTEXTPATH"));
+						window.location.href= xhr.getResponseHeader("CONTEXTPATH");
+					}
+				}
+			})
+
+			//修改提交按钮
+			$(".commit_new_good").click(function(){
+
+				var name = $(".goodname_input").eq(0).val();
+				var pri = $(".goodprice_input").eq(0).val();
+				var type = $(".good_type").eq(0).val();
+				var img = $("#lefile")[0].files[0];
+				var goodid = $(".good_id").eq(0).val();
+
+				
+
+				var fd = new FormData();
+				fd.append("goodname",name);
+				fd.append("goodtype",type);
+				fd.append("goodprice",pri);
+				fd.append("goodid",goodid);
+				fd.append("file",img);
+
+
+				$.ajax({
+					url:"../../ownerLogin/updateGoodsById",
+					type:"POST",
+					data:new FormData($("#form")[0]),
+					cache: false,
+					processData: false,
+			    	contentType: false,
+			    	dataType:'json',
+					success:function(data_)
+					{
+						alert("修改成功！！！");
+						console.log(data_.status);
+					},
+					error:function(xhr)
+					{
+						alert("网络问题！")
+					}
+				})
+
+
+			})
+		})
+</script>
+<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>

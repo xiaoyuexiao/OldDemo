@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>注册页面</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+			text-decoration: none;
+		}
+		body
+		{
+			/*background: #bff;*/
+			background: url("../img/background.jpg");
+		}
+		#register_content
+		{
+			width: 800px;
+			height: 500px;
+			background: white;
+			margin: 100px auto;
+		}
+		#r_c_head
+		{
+			height: 150px;
+			width: 800px;
+			float: left;
+			background: #ccc;
+		}
+		#r_c_head .role
+		{
+			width: 150px;
+			height: 100px;
+			margin:25px 125px;
+			float: left;
+			cursor: pointer;
+			background:#fff;
+			border-radius: 50px;
+		}
+		#r_c_head .role p
+		{
+			text-align: center;
+			line-height: 100px;
+			font-size: 25px;
+			font-family: "微软雅黑";
+		}
+		#r_c_body
+		{
+			height: 350px;
+			width: 800px;
+			float: left;
+		}
+		/*用户注册样式*/
+		#user_reg_mes
+		{
+			width: 600px;
+			margin: 10px auto;
+			padding: 20px 0;
+			background: #ccc;
+		}
+		#user_reg_mes ul li
+		{
+			list-style: none;
+			height: 35px;
+			width: 500px;
+			margin: 10px auto;
+			text-align: center;
+			line-height: 35px;
+		}
+		#user_reg_mes ul li:first-child
+		{
+			font-size: 25px;
+		}
+		#user_reg_mes ul li input
+		{
+			height: 20px;
+		}
+		/*商家注册样式*/
+		#shop_reg_mes
+		{
+			width: 600px;
+			margin: 10px auto;
+			padding: 20px 0;
+			background: #ccc;
+		}
+		#shop_reg_mes ul li
+		{
+			list-style: none;
+			height: 35px;
+			width: 500px;
+			margin: 10px auto;
+			text-align: center;
+			line-height: 35px;
+		}
+		#shop_reg_mes ul li:first-child
+		{
+			font-size: 25px;
+		}
+		#shop_reg_mes ul li input
+		{
+			height: 20px;
+		}
+		.hidden_div
+		{
+			display: none;
+		}
+		/*商家和用户注册公有*/
+		.submit_btn
+		{
+			width: 50px;
+		}
+
+		.table_img
+		{
+			display: block;
+			float: left;
+			width: 30px;
+			height: 30px;
+		}
+		.table_img img
+		{
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div id="register_content">
+		<div id="r_c_head">
+			<div id="user_reg" class="role">
+				<p>用户注册</p>
+			</div>
+			<div id="shop_reg" class="role">
+				<p>商家注册</p>
+			</div>
+		</div>
+		<div id="r_c_body">
+			<!--用户注册-->
+			<div id="user_reg_mes" class="hidden_div">
+				<ul>
+					<li>用户注册</li>
+					<li>
+						手机号：<input type="text" name="user_phone">
+					</li>
+					<li>
+						&nbsp;&nbsp;&nbsp;密码：<input type="password" name="user_pwd">
+					</li>
+					<li>
+						所属学校：<input type="text" name="user_address" placeholder="请输入学校名称或首字母缩写">
+					</li>
+					<li>
+						<input id="user_submit" class="submit_btn" type="button" name="" value="提交">
+					</li>
+					
+				</ul>
+			</div>
+			<!--商家注册-->
+			<div id="shop_reg_mes" class="hidden_div">
+				 <ul>
+					<li>商家注册</li>
+					<li>
+						&nbsp;&nbsp;&nbsp;&nbsp;手机号：<input type="text" name="shop_phone">
+					</li>
+					<li>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;密码：<input type="password" name="shop_pwd">
+					</li>
+					<!-- <li>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;头像：<input id="headpic"  type="file">
+					</li> -->
+					<li>
+						商店名称：<input type="text" name="shop_name">
+					</li>
+					<li>
+						所属学校：<input type="text" name="shop_address" placeholder="请输入学校名称或首字母缩写">
+					</li>
+					<li>
+						<input id="shop_submit" class="submit_btn" type="button" name="" value="提交">
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		// 页面效果
+		$("#user_reg").click(function(){
+			$("#shop_reg_mes").hide();
+			$("#user_reg_mes").slideDown(1500);
+		})
+		$("#shop_reg").click(function(){
+			$("#user_reg_mes").hide();
+			$("#shop_reg_mes").slideDown(1500);
+		})
+		//http://localhost:8080/TakeOutFoodSystem/userRegister?user_phone=15700218161&user_pwd=123
+		// 数据传输
+		//商家注册数据处理
+		$("#shop_submit").click(function(){
+			var shop_phone = $("[name='shop_phone']").eq(0).val();
+			var shop_pwd = $("[name='shop_pwd']").eq(0).val();
+			var shop_name = $("[name='shop_name']").eq(0).val();
+			var shop_address = $("[name='shop_address']").eq(0).val();
+			
+			$.ajax({
+				url:"../../shopRegister",
+				data:{
+					"shop_phone":shop_phone,
+					"shop_pwd":shop_pwd,
+					"shop_name":shop_name,
+					"shop_address":shop_address,
+				},
+				type:"post",
+				success:function(data){
+					validatePhone(data);
+				},
+				error:function(xhr)
+				{
+					alert("网络问题！！" + "错误码为：" + xhr.status);
+				}
+			})
+		})
+
+
+		
+		//用户注册数据处理
+		$("#user_submit").click(function(){
+			var user_phone = $("[name='user_phone']").eq(0).val();
+			var user_pwd = $("[name='user_pwd']").eq(0).val();
+			var user_address = $("[name='user_address']").eq(0).val();
+			$.ajax({
+				url:"../../userRegister",
+				data:{
+					"user_phone":user_phone,
+					"user_pwd":user_pwd,
+					"user_school":user_address
+				},
+				type:"post",
+				success:function(data){
+					validatePhone(data);
+				},
+				error:function(xhr)
+				{
+					alert("网络问题！！" + "错误码为：" + xhr.status);
+				}
+			})
+		})
+
+
+		//上传图片
+		$("#headpic").change(function(){
+			uploadFiles(this.files[0]);
+		})
+		
+	})
+
+	function validatePhone(data)
+	{
+		var data_ = JSON.parse(data);
+		console.log("status:" + data_.status);
+		console.log("info:" + data_.info);
+		if (data_.status == "1" && data_.info=="success")
+		{
+			alert("恭喜你，注册成功！！！");
+			window.location.href=`./login.html`;
+		}
+		if (data_.status == "2" || data_.status == "3")
+		{
+			alert("网络问题，请稍后再试！！！");
+		}
+		if (data_.status == "7")
+		{
+			alert("请输入正确的手机号！！！");
+		}
+		if (data_.status == "4")
+		{
+			alert("该手机号已经被注册！！！");
+		}
+		if (data_.status == "5")
+		{
+			alert("注册失败，密码长度至少为6个数字或者数字！！");
+		}
+		if (data_.status == "6")
+		{
+			alert("注册失败，学校名称或者缩写填写错误！！");
+		}
+	}
+
+	function uploadFiles(imgdata){   
+	    //var uploadFile = new FormData($("#headpic")[0]);
+	    let form_data=new FormData();
+            form_data.append('file', imgdata) 
+	        $.ajax({  
+	            url:'../../upImg',  
+	            type:'POST',  
+	            data:form_data,  
+	            async: false,    
+	            cache: false,   
+	            contentType: false, //不设置内容类型  
+	            processData: false, //不处理数据  
+	            success:function(data){  
+	                console.log(data);  
+	            },  
+	            error:function(){  
+	                alert("上传失败！");  
+	            }  
+	        }) 
+	}
+</script>
+</html>

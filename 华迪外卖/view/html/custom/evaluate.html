@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>用户评价</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../../bootstrap/css/bootstrap.min.css">
+	<script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
+	<style type="text/css">
+		body
+		{
+			padding: 0;
+			margin: 0;
+			background: rgb(245,245,245);
+		}
+		.cs_header
+		{
+			background: rgb(51,51,51);
+			height: 32px;
+			color: #fff;
+		}
+		.good_user
+		{
+			margin: 0;
+			padding: 0;
+		}
+		.school
+		{
+			line-height: 32px;
+		}
+		.good_user button
+		{
+			border: none;
+			background: rgb(51,51,51);
+			height: 32px;
+		}
+		.good_user button:hover
+		{
+			color: #fff;
+		}
+		.user_evaluate
+		{
+			background: #fff;
+			line-height: 40px;
+			font-size: 25px;
+			padding: 15px;
+		}
+		.evaluate_list
+		{
+			background: #fff;
+		}
+		.shop_mes
+		{
+			padding: 10px;
+			font-size: 18px;
+		}
+		.self_evaluate
+		{
+			padding-top: 20px;
+		}
+		.chat_list div
+		{
+			padding: 15px;
+		}
+		.chat_list div span
+		{
+			font-size: 15px;
+			font-weight: bold;
+		}
+		.respone_shop
+		{
+			margin-top: 10px;
+		}
+		.evaluate_star
+		{
+			margin: 0;
+			padding: 0;
+			width: 96px;
+			height: 22px; 
+			overflow: hidden;
+			background: url("../../img/evaluate.jpg");
+			background-repeat: no-repeat;
+		}
+		.evaluate_star ul
+		{
+			padding: 0;
+			margin: 0;
+		}
+		.evaluate_star ul li
+		{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			width: 10%;
+			height: 22px;
+			float: left;
+		}
+	</style>
+</head>
+<body>
+	<!-- 顶部导航条-->
+	<div class="col-md-12 cs_header">
+		<div class="col-md-1"></div>
+		<div class="col-md-3 school">学校： <span></span></div>
+		<div class="col-md-7 good_user">
+		  <div class="col-md-12">
+		  	<div class="input-group">
+		      <div class="input-group-btn">
+		        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">账号：<span id="userphone"></span> <span class="caret"></span></button>
+		        <ul class="dropdown-menu">
+		         	<li id="myorders"><a>我的订单</a></li>
+ 				    <li id="quite"><a>退出</a></li>
+		        </ul>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+
+
+	<div class="col-md-12" style="padding: 0">
+		<div class="col-md-12 user_evaluate">
+			<div class="col-md-2"></div>
+			<div class="col-md-10">用户评价:</div>
+		</div>
+		<div class="col-md-2">
+			
+		</div>
+		
+		<div class="col-md-8 evaluate_list">
+			
+			<div class="col-md-12">
+				<div class="col-md-12 shop_mes">
+					<div class="col-md-4">店铺名称：<span id="shopname">麦克多</span></div>
+					<div class="col-md-4">订单编号：<span id="order_id"></span></div>
+				</div>
+				<div class="col-md-12">
+					<div class="col-md-2">包装</div>
+					<div class="col-md-10">
+						<div class="col-md-4 evaluate_star">
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>	
+						<div class="col-md-5 evaluate_mark packing">
+							0
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="col-md-2">配送</div>
+					<div class="col-md-10">
+						<div class="col-md-4 evaluate_star">
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>	
+						<div class="col-md-5 evaluate_mark flavor">
+							0
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="col-md-2">味道</div>
+					<div class="col-md-10">
+						<div class="col-md-4 evaluate_star">
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>	
+						<div class="col-md-5 evaluate_mark distribution">
+							0
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12 self_evaluate">
+					<div class="form-group">
+		            	<label for="message-text" class="control-label">留言评价:</label>
+		            	<textarea class="form-control" id="message-text"></textarea>
+		            	<button type="button" class="btn btn-primary btn-block respone_shop">回复</button>
+		         	 </div>
+				</div>
+				<div class="col-md-12 chat_list">
+					<!-- <div class="col-md-12"><span>商家：</span>撒胡椒粉gas进口红酒卡死换个卡就是看</div>
+					<div class="col-md-12"><span>我：</span>撒胡椒粉gas进口红酒卡死换个卡就卡死换个卡就是卡死换个卡就是卡死换个卡就是卡死换个卡就是卡死换个卡就是卡死换个卡就是卡死换个卡就是卡死换个卡就是卡死换个卡就是卡死换个卡就是卡死换个卡就是是看</div>
+					<div class="col-md-12"><span>商家：</span>撒胡椒粉gas进口红酒卡死换个卡就是看</div>
+					<div class="col-md-12"><span>我：</span>撒胡椒粉gas进口红酒卡死换个卡就是看</div>
+					<div class="col-md-12"><span>我：</span>撒胡椒粉gas进口红酒卡死换个卡就是看</div>
+					<div class="col-md-12"><span>我：</span>撒胡椒粉gas进口红酒卡死换个卡就是看</div> -->
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-2">
+			
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	$(function(){
+
+		let url= window.location.href;
+        let info = url.split('=');
+        let orderid = info[1];//订单编号
+
+        $("#order_id").text(orderid);
+        getEvaluate(orderid);
+        //查询店铺名称
+        var schoolname = "";
+        var userphone = "";
+        $.ajax({
+        	url:"../../../login/queryShopNameAndStarByorderid",
+ 			type:"post",
+ 			data:{
+ 				orderid:orderid
+ 			},
+ 			success:function(data){
+ 				var data_ = JSON.parse(data);
+ 				var shopname = data_.info.shopname;
+ 					schoolname = data_.schoolname;
+ 					userphone = data_.user;
+ 				$(".school span").eq(0).text(schoolname);
+ 				$("#userphone").text(userphone);
+
+ 				$("#shopname").text(shopname);
+ 			},
+ 			complete:function(xhr)
+						{
+							console.log("complete");
+							var sessionstatus = xhr.getResponseHeader("SESSIONSTATUS");
+							if (sessionstatus == "TIMEOUT")
+							{
+								console.log(xhr.getResponseHeader("CONTEXTPATH"));
+								window.location.href= xhr.getResponseHeader("CONTEXTPATH");
+							}
+
+						},
+ 			error:function(){
+ 				alert("网络问题，稍后再试！！");
+ 			}
+        })
+        //评价
+        $(".respone_shop").eq(0).click(function(){
+        	var packing = $(".packing").text();
+      		var flavor = $(".flavor").text();
+      		var distribution = $(".distribution").text();
+        	var message = $("#message-text").val();
+        	$.ajax({
+     			url:"../../../login/userEvaluate",
+     			type:"post",
+     			data:{
+     				packing:packing,
+     				flavor:flavor,
+     				distribution:distribution,
+     				message:message,
+     				orderid:orderid,
+     				userphone,userphone
+     			},
+     			success:function(data){
+     				var data_ = JSON.parse(data);
+     				if (data_.info == "success")
+     				{
+     					alert("评价成功！！");
+     				}
+     				else
+     				{
+     					alert("评价失败，请稍后再试！");
+     				}
+     				
+     			},
+     			error:function(){
+     				alert("网络问题，稍后再试！！");
+     			}
+     		})
+     		var one_eva = '<div class="col-md-12"><span>我：</span>'+message+'</div>';
+     		$(".chat_list").eq(0).append(one_eva);
+     		// setTimeout(function(){
+     		// 	getEvaluate(orderid);
+     		// },200);
+        })
+        
+
+		//评价星级效果
+		var allli = $(".evaluate_star ul li");
+		allli.hover(function(){
+			var item = $(this).index();
+			var evaluate_mark = (item+1)*0.5;
+			var top = -22*(item +1)+"px";
+			$(this).parents(".evaluate_star").eq(0).css({"background-position":"0px "+top});
+			$(this).parents(".evaluate_star").siblings("div.evaluate_mark").html(evaluate_mark);
+		})
+		//查看我的订单
+     	$("#myorders").click(function(){
+     		var phone =  userphone;
+     		window.location.href=`./myOrders.html?user_phone=${phone}&schoolname=${schoolname}`;
+     	})
+     	//退出登录
+     	$("#quite").click(function(){
+     		$.ajax({
+     			url:"../../../userQuite",
+     			type:"post",
+     			data:{
+     				user_phone:userphone
+     			},
+     			success:function(data){
+     				var data_ = JSON.parse(data);
+     				if (data_.info == "1")
+     				{
+     					window.location.href=`../login.html`;
+     				}
+     				else
+     				{
+     					alert("退出失败，网络问题！");
+     				}
+     			},
+     			error:function(){
+     				alert("网络问题，稍后再试！！");
+     			}
+     		})
+     		
+     	})
+
+
+	})
+
+	function getEvaluate(orderid)
+	{
+       //请求评价回复的内容
+       $.ajax({
+       	url:"../../../login/queryEvlaluateListByOrderid",
+			type:"post",
+			data:{
+				orderid:orderid
+			},
+			success:function(data){
+				var data_ = JSON.parse(data);
+				console.log(data);
+				var evaluate_word_arr = data_.info;
+				var chat_list = $(".chat_list").eq(0);
+				var evalutecontent = "";
+				var evaluater = "";
+				for (var i = 0; i < evaluate_word_arr.length; i++)
+				{
+					evalutecontent = evaluate_word_arr[i].evalutecontent;
+					evaluater = evaluate_word_arr[i].evaluater;
+
+					if (evaluater == "0")
+					{
+						var one_eva = '<div class="col-md-12"><span>我：</span>'+evalutecontent+'</div>';
+						chat_list.append(one_eva);
+					}
+					if (evaluater == "1")
+					{
+						var one_eva = '<div class="col-md-12"><span>商家：</span>'+evalutecontent+'</div>';
+						chat_list.append(one_eva);
+					}
+				}
+			},
+			error:function(){
+				alert("网络问题，稍后再试！！");
+			}
+       })
+	}
+</script>
+</html>

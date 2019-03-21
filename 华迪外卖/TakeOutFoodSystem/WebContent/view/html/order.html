@@ -1,0 +1,305 @@
+<style lang="css">
+    /* 过滤 */
+    .filter-title{
+        margin-right: 20px;
+    }
+    /* 每一条订单 */
+    .order-item{
+        height: 40px;
+        background: white;
+        margin: 15px auto;
+        /* display: flex;
+        align-items: center;
+        justify-content: space-around; */
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 1px 3px rgba(26,26,26,.1);
+        overflow: hidden;
+        transition: 1s height;
+    }
+    /* 显示的那一部分 */
+    .order-show{
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+    /* 表格 */
+    .order-hidden>table{
+        font-size: 13px;
+        margin: 10px 40px;
+    }
+    /* 了解更多 */
+    .learn-more{
+        color:rgb(81, 130, 242);
+        cursor: pointer;
+    }
+    /* 备注 */
+    .note{
+        color: gray;
+        font-size: 12px;
+        margin-left: 42px;
+    }
+    /* 点击了解更多后的class */
+    .order-detail{
+        height: 200px;
+        transition: 1s height;
+    }
+</style>
+<div class="right_content" id="order_manage2">
+    <!-- 筛选 -->
+    <div class="filter" id="order-filter">
+        <span class="filter-title">筛选</span>
+        <button class="btn btn-default all">全部</button>
+        <button class="btn btn-default success">支付成功</button>
+        <button class="btn btn-default refund">退款成功</button>
+        <input id="input-filter"  type="text" class="form-control" style="width: 50%;display: inline-block;" placeholder="请输入过滤条件，按回车进行过滤">
+    </div>
+    <div class="order-item">
+    <div class="order-show">
+            <span>订单id:20180612001</span>
+            <span>联系方式:15196235248</span>
+            <span>订单状态:已支付</span>
+            <span>创建时间：2018-8-12</span>
+            <span class="learn-more">了解更多...</span>
+        </div>
+        <div class="order-hidden">
+            <table class="table">
+                <tr>
+                    <td>订单物品</td>
+                    <td>数量</td>
+                    <td>合计</td>
+                    <td>单价</td>
+                </tr>
+                <tr>
+                    <td>鸡腿</td>
+                    <td>1</td>
+                    <td>20</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td colspan="4">总价格20</td>
+                </tr>
+                
+            </table>
+            <div class="note">
+                备注：我要一个套套。
+            </div>
+        </div> 
+        
+
+    </div>
+    
+</div>
+<script>
+//---------------测试数据
+    const ORDERS=[{
+        id:'20180622001',
+        tel:'15196235249',
+        // 订单状态  complete已支付  refund 退款  uncomplete 未完成
+        status:'success',
+        time:'2018-6-16',
+        detail:[
+            {
+                name:'火腿',
+                price:2,
+                num:2
+            },
+            {
+                name:'泡面',
+                price:5,
+                num:1
+            },
+        ],
+        note:'老板，我要一盒!'
+    }, {
+            id: '20180622002',
+            tel: '15196235249',
+            // 订单状态  complete已支付  refund 退款  uncomplete 未完成
+            status: 'refund',
+            time: '2018-6-16',
+            detail: [
+                {
+                    name: '火腿',
+                    price: 2,
+                    num: 2
+                },
+                {
+                    name: '泡面',
+                    price: 5,
+                    num: 1
+                },
+            ],
+            note: '老板，我再要一盒!'
+        }
+]
+//--------------使用数据渲染
+    let orders=ORDERS;
+    function renderOrderData(orders) {
+        
+        orders.map(item => {
+            // 计算总价格，根据status添加class
+            item.total_price = item.detail.map(item => item.price * item.num).reduce((tmp, item) => tmp + item);
+            // item.price_all
+            item.class = item.status;
+            // 
+            switch (item.status) {
+                case 'success':
+                    item.status_c = '支付成功'
+                    break;
+                case 'refund':
+                    item.status_c = '退款'
+                    break;
+
+                default:
+                    break;
+            }
+            return item;
+        })
+        let order_dom = '';
+        let total_tr = '';
+
+        orders.forEach(function (item, index) {
+            // dom
+            // 表示表格
+            item.detail.forEach(item => {
+                let order_tr = `
+            <tr>
+                <td>${item.name}</td>
+                <td>${item.num}</td>
+                <td>${item.price}</td>
+                <td>${item.num * item.price}</td>
+            </tr>
+        `;
+                total_tr += order_tr;
+            })
+
+            let order_item = `<div class="order-item ${item.class}" >
+            <div class="order-show">
+                <span>订单id:${item.id}</span>
+                <span>联系方式:${item.tel}</span>
+                <span>订单状态:${item.status_c}</span>
+                <span>创建时间：${item.time}</span>
+                <span class="learn-more">了解更多...</span>
+            </div>
+            <div class="order-hidden">
+                <table class="table">
+                    <tr>
+                        <td>订单物品</td>
+                        <td>数量</td>
+                        <td>合计</td>
+                        <td>单价</td>
+                    </tr>
+                    ${total_tr}
+                    <tr>
+                        <td colspan="4">总价格${item.total_price}</td>
+                    </tr>
+
+                </table>
+                <div class="note" id="note">
+                    备注：我要一个套套。
+            </div>
+            </div>
+
+
+        </div>`;
+            order_dom = order_dom + order_item;
+            total_tr = '';
+        })
+        $('#order_manage2').append(order_dom);
+        order_dom = '';
+    }
+    renderOrderData(orders);
+    
+
+
+
+
+
+
+//---------------操作
+
+
+
+
+
+    let right_content=$('#right_content');
+    // 点击了解更多
+    right_content.on('click','.learn-more',function (e) {
+        let _this=$(this);
+        let order_item=_this.parent().parent();
+        
+        if(order_item.hasClass('order-detail')){//收起来
+            order_item.removeClass('order-detail');
+            _this.text('了解更多');
+            
+        }else{//展开
+            order_item.addClass('order-detail');
+            _this.text('收起');
+        }
+    })
+    // 筛选功能
+    right_content.on('click','.btn',function (e) {
+        let _this=$(e.target);
+        if(_this.hasClass('btn-default')){//如果是默认
+            _this.removeClass('btn-default');
+            _this.addClass('btn-primary');
+            _this.siblings().removeClass('btn-primary');
+
+            // 过滤 先删除  然后再重新插入
+            
+            let classArr= e.target.className.split(' ');
+            
+            // 需要过滤的class
+            let currentClass=classArr.filter(item => item.search(/^b.+/g) === -1).shift();
+            console.log(currentClass);
+            console.log(ORDERS);
+            
+            let current_orders=ORDERS.filter(item=>item.status==currentClass);            
+            console.log(current_orders);
+            $('#order-filter').siblings('.order-item').remove();
+            renderOrderData(current_orders);
+            // 加载全部
+            if (currentClass == 'all') {
+                renderOrderData(ORDERS);
+            }
+
+            
+        }else if(_this.hasClass('btn-primary')){
+            _this.addClass('btn-default');
+            _this.removeClass('btn-primary');
+        }else{//如果class不包括btn-primary和btn-default
+              _this.removeClass('btn-default');
+            _this.addClass('btn-primary');
+            _this.siblings().removeClass('btn-primary');
+
+            // 过滤 先删除  然后再重新插入
+
+            let classArr = e.target.className.split(' ');
+
+            // 需要过滤的class
+            let currentClass = classArr.filter(item => item.search(/^b.+/g) === -1).shift();
+            console.log(currentClass);
+            console.log(ORDERS);
+
+            let current_orders = ORDERS.filter(item => item.status == currentClass);
+            console.log(current_orders);
+            $('#order-filter').siblings('.order-item').remove();
+            renderOrderData(current_orders);
+            // 加载全部
+            if (currentClass == 'all') {
+                renderOrderData(ORDERS);
+            }
+
+        }
+        //-----输入过滤条件进行过滤
+        right_content.on('keyup','#input-filter',function (e)  {
+            console.log(e.which);
+        })
+        $('#input-filter').keyup(function (e) {
+            console.log(e.which);
+        })
+        
+        
+    })
+
+</script>

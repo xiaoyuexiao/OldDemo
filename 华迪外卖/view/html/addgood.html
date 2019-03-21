@@ -1,0 +1,156 @@
+<style type="text/css">
+		div
+		{
+			padding: 0;
+		}
+		.menu_name
+		{
+			line-height: 34px;
+			font-size: 18px;
+		}
+		.new_add
+		{
+			height: 30px;
+			line-height: 30px;
+		}
+		.good_search
+		{
+			float: right;
+		}
+		.writebtn
+		{
+			margin-bottom: 10px;
+		}
+		.updategood_submit
+		{
+			margin: 10px auto;
+		}
+		.good_mes div
+		{
+			margin-top: 10px;
+		}
+</style>
+<body>
+	<div id="content">
+
+		<div class="col-md-12">
+
+			<div class="col-md-12">
+				<div class="col-md-5 menu_name">新增商品</div>
+				<div class="col-md-7">
+				
+				</div>
+			</div>
+			
+			<div class="col-md-12 good_mes">
+				<div class="row">
+				  <div class="col-md-12">
+				    <div class="input-group">
+				      <div class="input-group-btn">
+				        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">商品分类： <span class="caret"></span></button>
+				        <ul class="dropdown-menu good_type">
+				         	<li><a>主食</a></li>
+         				    <li><a>下午茶</a></li>
+         				    <li><a>饮品</a></li>
+				        </ul>
+				      </div><!-- /btn-group -->
+				      <input type="text" id="type_input" class="form-control dropdown_menu_input" placeholder="请选择分类" aria-label="...">
+				    </div><!-- /input-group -->
+				  </div><!-- /.col-lg-6 -->
+				</div><!-- /.row -->
+
+				<div class="input-group">
+
+				  <div class="input-group">
+				  	<input id="lefile" type="file" style="display:none"> 
+				    <span class="input-group-addon" id="basic-addon1">商品图片：</span>
+				    <input type="text" id="photoCover"  class="form-control"  placeholder="请选择图片" aria-describedby="basic-addon2">
+				    <span class="input-group-addon" onclick="$('input[id=lefile]').click();">请选择图片</span> 
+				  </div>
+
+				</div>
+
+				<div class="input-group">
+				  <span class="input-group-addon" id="sizing-addon2">商品名称：</span>
+				  <input type="text" class="form-control goodname" placeholder="请输入名称" aria-describedby="sizing-addon2">
+				</div>
+			
+				<div class="input-group">
+				  <span class="input-group-addon" id="sizing-addon2">商品价格：</span>
+				  <input type="text" class="form-control goodprice" placeholder="请输入价格" aria-describedby="sizing-addon2">
+				</div>
+
+
+				<!-- <div class="input-group">
+				  <span class="input-group-addon" id="sizing-addon2">商品描述：</span>
+				  <input type="text"  class="form-control gooddetail" placeholder="请输入描述" aria-describedby="sizing-addon2">
+				</div> -->
+				
+				<button type="button" class="btn btn-default updategood_submit btn-block">提交</button>
+
+			</div>
+		</div>
+
+	</div>
+</body>
+<script type="text/javascript">
+	$(function(){
+
+		$(".good_type li").click(function(){
+			var type = $(this).text();
+			$("#type_input").val(type);
+		})
+
+		$('input[id=lefile]').change(function() { 
+			$('#photoCover').val($(this).val()); 
+		});
+
+		$(".updategood_submit").click(function(){
+
+			var goodname = $(".goodname").eq(0).val();
+			var gooddetail = $(".gooddetail").eq(0).val();
+			var goodtype = $("#type_input").val();
+			var image = $("#lefile")[0].files[0];
+			var goodprice = $(".goodprice").eq(0).val();
+
+			var type_num = "";
+
+			if (goodtype == "主食") 
+			{
+				type_num = "0";
+			}
+			if (goodtype == "下午茶") 
+			{
+				type_num = "1";
+			}
+			if (goodtype == "饮品") 
+			{
+				type_num = "2";
+			}
+
+			var fd = new FormData();
+			fd.append("goodname",goodname);
+			//fd.append("gooddetail",gooddetail);
+			fd.append("goodtype",type_num);
+			fd.append("goodprice",goodprice);
+			fd.append("file",image);
+
+			$.ajax({
+			    url: '../../ownerLogin/addGood',
+			    type: 'POST',
+			    cache: false,
+			    data: fd,
+			    processData: false,
+			    contentType: false
+			}).done(function(res) 
+			{
+				alert("上传完成");
+			}).fail(function(res){
+				alert("上传失败");
+			});
+
+		})
+
+	})
+</script>
+<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
